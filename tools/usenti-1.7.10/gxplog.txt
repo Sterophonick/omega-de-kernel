@@ -1,0 +1,18 @@
+STATUS: Validatating gr.
+WARNING:   No explicit src path.
+STATUS: Validation succeeded.
+STATUS: Started run at: 2021-12-05, 05:38:26
+STATUS: Validatating gr.
+STATUS: Validation succeeded.
+STATUS: Preparing data.
+STATUS: Work-DIB creation.
+WARNING:   converting from 8 bpp to 16 bpp.
+STATUS: converting to: 16bpp, BGR.
+STATUS: Work-DIB creation complete: 240x160@16.
+STATUS: Tile preparation.
+STATUS: Tile preparation complete.
+STATUS: Graphics preparation.
+STATUS: Graphics preparation complete.
+STATUS: Data preparation complete.
+STATUS: Export to binary files.
+STATUS: Run completed :).
