@@ -7,7 +7,7 @@
 //	+ bitmap not compressed
 //	Total size: 76800 = 76800
 //
-//	Time-stamp: 2021-12-05, 16:42:26
+//	Time-stamp: 2021-12-06, 03:37:28
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
 //	( http://www.coranac.com/projects/#grit )
 //
