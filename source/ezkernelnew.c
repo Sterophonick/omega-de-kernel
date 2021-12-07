@@ -157,7 +157,7 @@ u16 gl_color_selected = RGB(15, 15, 15);
 u16 gl_color_text = RGB(31, 31, 31);
 u16 gl_color_selectBG_sd = RGB(15, 15, 15);
 u16 gl_color_selectBG_nor = RGB(15, 15, 15);
-u16 gl_color_MENU_btn = RGB(15, 15, 15);
+u16 gl_color_MENU_btn = RGB(03, 03, 03);
 #else
 u16 gl_color_text = RGB(31, 00, 00);
 u16 gl_color_selectBG_sd = RGB(15, 15, 15);
