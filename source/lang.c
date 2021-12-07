@@ -121,131 +121,131 @@ char* gl_disabled;
 unsigned char* ASC_DATA;
 
 
-//ä¸­æ–‡
-const char zh_init_error[]="TFå¡åˆå§‹åŒ–å¤±è´¥";
-const char zh_power_off[]="å…³æœº";
-const char zh_init_ok[]="TFå¡åˆå§‹åŒ–æˆåŠŸ";
-const char zh_Loading[]="åŠ è½½ä¸­...";
-const char zh_file_overflow[]="æ–‡ä»¶å¤ªå¤§,ä¸èƒ½åŠ è½½";
+//ÖĞÎÄ
+const char zh_init_error[]="TF¿¨³õÊ¼»¯Ê§°Ü";
+const char zh_power_off[]="¹Ø»ú";
+const char zh_init_ok[]="TF¿¨³õÊ¼»¯³É¹¦";
+const char zh_Loading[]="¼ÓÔØÖĞ...";
+const char zh_file_overflow[]="ÎÄ¼şÌ«´ó,²»ÄÜ¼ÓÔØ";
 
-const char zh_menu_btn[]=" (B)å–æ¶ˆ    (A)ç¡®å®š";
-const char zh_writing[]="æ­£åœ¨å†™å…¥...";
-const char zh_lastest_game[]="è¯·é€‰æ‹©æœ€åä¸€ä¸ªæ¸¸æˆ";
+const char zh_menu_btn[]=" (B)È¡Ïû    (A)È·¶¨";
+const char zh_writing[]="ÕıÔÚĞ´Èë...";
+const char zh_lastest_game[]="ÇëÑ¡Ôñ×îºóÒ»¸öÓÎÏ·";
 
-const char zh_time[] ="     æ—¶é—´";
-const char zh_Mon[]="ä¸€";
-const char zh_Tues[]="äºŒ";
-const char zh_Wed[]="ä¸‰";
-const char zh_Thur[]="å››";
-const char zh_Fri[]="äº”";
-const char zh_Sat[]="å…­";
-const char zh_Sun[]="æ—¥";
+const char zh_time[] ="     Ê±¼ä";
+const char zh_Mon[]="Ò»";
+const char zh_Tues[]="¶ş";
+const char zh_Wed[]="Èı";
+const char zh_Thur[]="ËÄ";
+const char zh_Fri[]="Îå";
+const char zh_Sat[]="Áù";
+const char zh_Sun[]="ÈÕ";
 
-const char zh_addon[]="     åŠŸèƒ½";
-const char zh_reset[]="è½¯å¤ä½";
-const char zh_rts[]="å³æ—¶å­˜æ¡£";
-const char zh_sleep[]="ç¡çœ ";
-const char zh_cheat[]="é‡‘æ‰‹æŒ‡";
+const char zh_addon[]="     ¹¦ÄÜ";
+const char zh_reset[]="Èí¸´Î»";
+const char zh_rts[]="¼´Ê±´æµµ";
+const char zh_sleep[]="Ë¯Ãß";
+const char zh_cheat[]="½ğÊÖÖ¸";
 
-const char zh_hot_key[]=" ç¡çœ çƒ­é”®";
-const char zh_hot_key2[]=" èœå•çƒ­é”®";
+const char zh_hot_key[]=" Ë¯ÃßÈÈ¼ü";
+const char zh_hot_key2[]=" ²Ëµ¥ÈÈ¼ü";
 
 const char zh_language[]=" LANGUAGE";
-const char zh_lang[]=" ä¸­æ–‡";
+const char zh_lang[]=" ÖĞÎÄ";
 
-const char zh_set_btn[]="è®¾ç½®";
-const char zh_ok_btn[]="ä¿å­˜";
-const char zh_formatnor_info[]="ç¡®å®š?å¤§çº¦4åˆ†é’Ÿ";
+const char zh_set_btn[]="ÉèÖÃ";
+const char zh_ok_btn[]="±£´æ";
+const char zh_formatnor_info[]="È·¶¨?´óÔ¼4·ÖÖÓ";
 
-const char zh_theme_credit[]="Simpleä¸»é¢˜ v1.1";
+const char zh_theme_credit[]="SimpleÖ÷Ìâ v1.1";
 const char zh_theme_credit2[]="by Sterophonick";
 
-const char zh_check_sav[]="æ£€æŸ¥SAVæ–‡ä»¶";
-const char zh_make_sav[]="åˆ›å»ºSAVæ–‡ä»¶";
+const char zh_check_sav[]="¼ì²éSAVÎÄ¼ş";
+const char zh_make_sav[]="´´½¨SAVÎÄ¼ş";
 
-const char zh_check_RTS[]="æ£€æŸ¥RTSæ–‡ä»¶";
-const char zh_make_RTS[]="åˆ›å»ºRTSæ–‡ä»¶";
+const char zh_check_RTS[]="¼ì²éRTSÎÄ¼ş";
+const char zh_make_RTS[]="´´½¨RTSÎÄ¼ş";
 
-const char zh_check_pat[]="æ£€æŸ¥PATæ–‡ä»¶";
-const char zh_make_pat[]="åˆ›å»ºPATæ–‡ä»¶";
+const char zh_check_pat[]="¼ì²éPATÎÄ¼ş";
+const char zh_make_pat[]="´´½¨PATÎÄ¼ş";
 
-const char zh_please_wait[]="è¯·ç­‰å¾…...";
+const char zh_please_wait[]="ÇëµÈ´ı...";
 
-const char zh_loading_game[]="åŠ è½½æ¸¸æˆ";
+const char zh_loading_game[]="¼ÓÔØÓÎÏ·";
 
-const char zh_no_roms[]="æ‰¾ä¸åˆ°.gbaæ–‡ä»¶!";
+const char zh_no_roms[]="ÕÒ²»µ½.gbaÎÄ¼ş!";
 
-const char zh_engine[]="     å¼•æ“";
-const char zh_use_engine[]="å¿«é€Ÿè¡¥ä¸å¼•æ“";
+const char zh_engine[]="     ÒıÇæ";
+const char zh_use_engine[]="¿ìËÙ²¹¶¡ÒıÇæ";
 
-const char zh_recently_play[]="æœ€è¿‘æ¸¸æˆåˆ—è¡¨";
+const char zh_recently_play[]="×î½üÓÎÏ·ÁĞ±í";
 
-const char zh_START_help[]="æ‰“å¼€æœ€è¿‘æ¸¸æˆåˆ—è¡¨";
-const char zh_SELECT_help[]="æ›´å¤šé€‰é¡¹";
-const char zh_L_A_help[]="åè½¬å†·å¯åŠ¨é€‰é¡¹";
-const char zh_LSTART_help[]="åˆ é™¤æ–‡ä»¶";
-const char zh_LSELECT_help[]="åˆ é™¤ä¿å­˜æ–‡ä»¶";
-const char zh_online_manual[]="  åœ¨çº¿è¯´æ˜ä¹¦";
+const char zh_START_help[]="´ò¿ª×î½üÓÎÏ·ÁĞ±í";
+const char zh_SELECT_help[]="¸ü¶àÑ¡Ïî";
+const char zh_L_A_help[]="·´×ªÀäÆô¶¯Ñ¡Ïî";
+const char zh_LSTART_help[]="É¾³ıÎÄ¼ş";
+const char zh_LSELECT_help[]="É¾³ı±£´æÎÄ¼ş";
+const char zh_online_manual[]="  ÔÚÏßËµÃ÷Êé";
 
-const char zh_no_game_played[]="æœ€è¿‘è¿˜æ²¡ç©è¿‡æ¸¸æˆ";
+const char zh_no_game_played[]="×î½ü»¹Ã»Íæ¹ıÓÎÏ·";
 
-const char zh_ingameRTC[]=" æ¸¸æˆæ—¶é’Ÿ";
+const char zh_ingameRTC[]=" ÓÎÏ·Ê±ÖÓ";
 //const char zh_offRTC_powersave[]=" ";
-const char zh_ingameRTC_open[]="æ‰“å¼€";
-const char zh_ingameRTC_close[]="å…³é—­";//TURNOFF TO POWER SAVE
+const char zh_ingameRTC_open[]="´ò¿ª";
+const char zh_ingameRTC_close[]="¹Ø±Õ";//TURNOFF TO POWER SAVE
 
-const char zh_lang_toggle_reset[]="ç¡¬é‡ç½®";
-const char zh_lang_toggle_backup[]="ä¿å­˜å¤‡ä»½";
+const char zh_lang_toggle_reset[]="Ó²ÖØÖÃ";
+const char zh_lang_toggle_backup[]="±£´æ±¸·İ";
 
-const char zh_error_0[]="æ–‡ä»¶å¤¹é”™è¯¯";
-const char zh_error_1[]="æ–‡ä»¶é”™è¯¯";
-const char zh_error_2[]="SAVERé”™è¯¯";
-const char zh_error_3[]="å­˜æ¡£é”™è¯¯";
-const char zh_error_4[]="è¯»å–å­˜æ¡£é”™è¯¯";
-const char zh_error_5[]="åˆ›å»ºå­˜æ¡£é”™è¯¯";
-const char zh_error_6[]="RTSæ–‡ä»¶é”™è¯¯";
+const char zh_error_0[]="ÎÄ¼ş¼Ğ´íÎó";
+const char zh_error_1[]="ÎÄ¼ş´íÎó";
+const char zh_error_2[]="SAVER´íÎó";
+const char zh_error_3[]="´æµµ´íÎó";
+const char zh_error_4[]="¶ÁÈ¡´æµµ´íÎó";
+const char zh_error_5[]="´´½¨´æµµ´íÎó";
+const char zh_error_6[]="RTSÎÄ¼ş´íÎó";
 
-const char zh_save_sav[]="ä¿å­˜å­˜æ¡£?";
-const char zh_save_ing[]="ä¿å­˜...";
-const char zh_save[]="     å­˜æ¡£";
-const char zh_auto_save[]="å¼€æœºè‡ªåŠ¨å¤‡ä»½";
+const char zh_save_sav[]="±£´æ´æµµ?";
+const char zh_save_ing[]="±£´æ...";
+const char zh_save[]="     ´æµµ";
+const char zh_auto_save[]="¿ª»ú×Ô¶¯±¸·İ";
 
-const char zh_modeB_INITstr[]="æ¨¡å¼BçŠ¶æ€";
-const char zh_modeB_RUMBLE[]="éœ‡åŠ¨";
-const char zh_modeB_RAM[]="å†…å­˜";
-const char zh_modeB_LINK[]="è”åŠ¨";
+const char zh_modeB_INITstr[]="Ä£Ê½B×´Ì¬";
+const char zh_modeB_RUMBLE[]="Õğ¶¯";
+const char zh_modeB_RAM[]="ÄÚ´æ";
+const char zh_modeB_LINK[]="Áª¶¯";
 
-const char zh_led[]="   æŒ‡ç¤ºç¯";
-const char zh_led_open[]="æ‰“å¼€LED";
-const char zh_Breathing_light[]="   å‘¼å¸ç¯";
-const char zh_SD_working[]=" SDå·¥ä½œç¯";
+const char zh_led[]="   Ö¸Ê¾µÆ";
+const char zh_led_open[]="´ò¿ªLED";
+const char zh_Breathing_light[]="   ºôÎüµÆ";
+const char zh_SD_working[]=" SD¹¤×÷µÆ";
 
-const char zh_NOR_full[]="NORç©ºé—´ä¸è¶³";
-const char zh_save_loaded[]="å­˜æ¡£å·²åŠ è½½åˆ°FRAM";
-const char zh_save_saved[]="å­˜æ¡£å·²ä¿å­˜åˆ°SD";
-const char zh_file_exist[]="æ–‡ä»¶å­˜åœ¨,è¦†ç›–å—?";
-const char zh_file_noexist[]="æ‰¾ä¸åˆ°å­˜æ¡£æ–‡ä»¶";
+const char zh_NOR_full[]="NOR¿Õ¼ä²»×ã";
+const char zh_save_loaded[]="´æµµÒÑ¼ÓÔØµ½FRAM";
+const char zh_save_saved[]="´æµµÒÑ±£´æµ½SD";
+const char zh_file_exist[]="ÎÄ¼ş´æÔÚ,¸²¸ÇÂğ?";
+const char zh_file_noexist[]="ÕÒ²»µ½´æµµÎÄ¼ş";
 
-const char zh_copying_data[]="å¤åˆ¶ROM...";
-const char zh_generating_emu[]="ç”Ÿæˆæ¨¡æ‹Ÿå™¨...";
+const char zh_copying_data[]="¸´ÖÆROM...";
+const char zh_generating_emu[]="Éú³ÉÄ£ÄâÆ÷...";
 
-const char zh_enabled[]="å·²å¯ç”¨";
-const char zh_disabled[]="æ®‹éšœäººå£«";
+const char zh_enabled[]="ÒÑÆôÓÃ";
+const char zh_disabled[]="²ĞÕÏÈËÊ¿";
 
 const char *zh_rom_menu[]={
-	"ç›´æ¥å¯åŠ¨",
-	"å¯åŠ¨å¸¦è¾…åŠ©",
-	"çƒ§å½•åˆ°NOR",
-	"çƒ§å½•åˆ°NORå¸¦è¾…åŠ©",
-	"å­˜æ¡£ç±»å‹",
-	"é‡‘æ‰‹æŒ‡",
+	"Ö±½ÓÆô¶¯",
+	"Æô¶¯´ø¸¨Öú",
+	"ÉÕÂ¼µ½NOR",
+	"ÉÕÂ¼µ½NOR´ø¸¨Öú",
+	"´æµµÀàĞÍ",
+	"½ğÊÖÖ¸",
 };
 const char *zh_nor_op[5]={
-	"ç›´æ¥è¿è¡Œ",
-	"åˆ é™¤",
-	"å…¨éƒ¨æ ¼å¼åŒ–",
-	"åŠ è½½å­˜æ¡£åˆ°FRAM",
-	"ä¿å­˜FRAMå­˜æ¡£",
+	"Ö±½ÓÔËĞĞ",
+	"É¾³ı",
+	"È«²¿¸ñÊ½»¯",
+	"¼ÓÔØ´æµµµ½FRAM",
+	"±£´æFRAM´æµµ",
 };
 
 
@@ -286,8 +286,8 @@ const char en_ok_btn[]=" OK";
 const char en_formatnor_info1[]="Are you sure?";
 const char en_formatnor_info2[]="This will take a while.";
 
-const char en_theme_credit[]="SimpleDE SuperDark";
-const char en_theme_credit2[]="Sterophonick / f3bandit";
+const char en_theme_credit[]="SimpleDE v1.1 by";
+const char en_theme_credit2[]="Sterophonick.";
 
 const char en_check_sav[]="Checking Save Data...";
 const char en_make_sav[] ="Creating Save Data...";
@@ -310,7 +310,7 @@ const char en_use_engine[]="Fast Patch Engine";
 const char en_recently_play[]="Recently Played";
 
 const char en_START_help[]="Open recently played list";
-const char en_SELECT_help[]="Toggle rom images";
+const char en_SELECT_help[]="More options";
 const char en_L_A_help[]="Invert cold start option";
 const char en_LSTART_help[]="Delete file";
 const char en_LSELECT_help[]="Delete save file";
@@ -349,11 +349,11 @@ const char en_led_open[]="Enable LED";
 const char en_Breathing_light[]="Breathing";
 const char en_SD_working[]="   SD LED";
 
-const char en_NOR_full[]="NOR space full  ";
-const char en_save_loaded[]="Sav has been loaded";
-const char en_save_saved[]="Sav has been saved";
-const char en_file_exist[]="File existï¼Œcover it?";
-const char en_file_noexist[]="No sav file found";
+const char en_NOR_full[]="NOR space not enough  ";
+const char en_save_loaded[]="Sav have been loaded";
+const char en_save_saved[]="Sav have been saved";
+const char en_file_exist[]="File exist£¬cover it?";
+const char en_file_noexist[]="Cnt not find sav file";
 
 const char en_copying_data[]="Copying ROM...";
 const char en_generating_emu[]="Generating Emulator...";
