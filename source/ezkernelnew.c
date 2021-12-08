@@ -157,17 +157,17 @@ u16 gl_color_selected = RGB(15, 15, 15);
 u16 gl_color_text = RGB(31, 31, 31);
 u16 gl_color_selectBG_sd = RGB(15, 15, 15);
 u16 gl_color_selectBG_nor = RGB(15, 15, 15);
-u16 gl_color_MENU_btn = RGB(15, 15, 15);
+u16 gl_color_MENU_btn = RGB(03, 03, 03);
 #else
 u16 gl_color_text = RGB(31, 00, 00);
 u16 gl_color_selectBG_sd = RGB(15, 15, 15);
 u16 gl_color_selectBG_nor = RGB(15, 15, 15);
-u16 gl_color_MENU_btn = RGB((15, 15, 15);
+u16 gl_color_MENU_btn = RGB(20, 20, 20);
 #endif
 u16 gl_color_cheat_count = RGB(00, 31, 00);
 u16 gl_color_cheat_black = RGB(00, 00, 00);
 u16 gl_color_NORFULL = RGB(31, 00, 00);
-u16 gl_color_btn_clean = RGB(15, 15, 15);
+u16 gl_color_btn_clean = RGB(20, 20, 20);
 u16 SAV_info_buffer [0x200]EWRAM_BSS;
 //******************************************************************************
 void delay(u32 R0)
