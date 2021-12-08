@@ -1,18 +1,18 @@
 STATUS: Validatating gr.
 WARNING:   No explicit src path.
 STATUS: Validation succeeded.
-STATUS: Started run at: 2021-12-05, 16:41:02
+STATUS: Started run at: 2021-12-07, 18:32:07
 STATUS: Validatating gr.
 STATUS: Validation succeeded.
 STATUS: Preparing data.
 STATUS: Work-DIB creation.
 WARNING:   converting from 8 bpp to 16 bpp.
 STATUS: converting to: 16bpp, BGR.
-STATUS: Work-DIB creation complete: 240x160@16.
+STATUS: Work-DIB creation complete: 120x80@16.
 STATUS: Tile preparation.
 STATUS: Tile preparation complete.
 STATUS: Graphics preparation.
 STATUS: Graphics preparation complete.
 STATUS: Data preparation complete.
-STATUS: Export to binary files.
+STATUS: Export to C: gImage_NOTFOUND into C:\Users\f3ban\OneDrive\Documents\GitHub\omega-de-kernel\tools\usenti-1.7.10\gImage_NOTFOUND.c .
 STATUS: Run completed :).

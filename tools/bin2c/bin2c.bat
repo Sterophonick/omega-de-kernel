@@ -1,2 +1,2 @@
-bin2c -o splash.h gImage_splash
+bin2c -o NOTFOUND.h gImage_NOTFOUND
 pause
