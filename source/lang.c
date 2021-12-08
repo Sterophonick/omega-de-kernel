@@ -286,8 +286,8 @@ const char en_ok_btn[]=" OK";
 const char en_formatnor_info1[]="Are you sure?";
 const char en_formatnor_info2[]="This will take a while.";
 
-const char en_theme_credit[]="SimpleDE v1.1 by";
-const char en_theme_credit2[]="Sterophonick.";
+const char en_theme_credit[]="SimpleDE / SuperDark";
+const char en_theme_credit2[]="Sterophonick / f3bandit";
 
 const char en_check_sav[]="Checking Save Data...";
 const char en_make_sav[] ="Creating Save Data...";
@@ -349,11 +349,11 @@ const char en_led_open[]="Enable LED";
 const char en_Breathing_light[]="Breathing";
 const char en_SD_working[]="   SD LED";
 
-const char en_NOR_full[]="NOR space not enough  ";
-const char en_save_loaded[]="Sav have been loaded";
-const char en_save_saved[]="Sav have been saved";
-const char en_file_exist[]="File exist£¬cover it?";
-const char en_file_noexist[]="Cnt not find sav file";
+const char en_NOR_full[]="NOR space full";
+const char en_save_loaded[]="Save has been loaded";
+const char en_save_saved[]="Save has been saved";
+const char en_file_exist[]="File exist£¬overwrite it?";
+const char en_file_noexist[]="Can not find sav file";
 
 const char en_copying_data[]="Copying ROM...";
 const char en_generating_emu[]="Generating Emulator...";
