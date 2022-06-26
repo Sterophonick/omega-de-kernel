@@ -524,6 +524,7 @@ void IWRAM_CODE Check_FW_update(u16 Current_FW_ver,u16 Built_in_ver)
 	char msg[100];
 
 	//DEBUG_printf("Current_FW_ver %x ",Current_FW_ver);	
+	/*
 	Clear(0, 0, 240, 160, RGB(0,18,24), 1);
 	
 	sprintf(msg,"FIRMWARE UPDATE");
@@ -535,7 +536,7 @@ void IWRAM_CODE Check_FW_update(u16 Current_FW_ver,u16 Built_in_ver)
 	//if(get_crc32 != 0x480D0853) //fw1 
 	//if(get_crc32 != 0xA07D712F) //fw2
 	//if(get_crc32 != 0x3DA3D970) //fw3
-	/*if(get_crc32 != 0x76352215) //fw4
+	if(get_crc32 != 0x76352215) //fw4
 	{
 			sprintf(msg,"CRC32 checksum error!");		
 			DrawHZText12(msg,0,2,offset_Y+1*line_x, RGB(31,00,00),1);
@@ -552,7 +553,7 @@ void IWRAM_CODE Check_FW_update(u16 Current_FW_ver,u16 Built_in_ver)
 					return;
 				}
 			}		
-	}*/
+	}
 
 	sprintf(msg,"Current firmware version: V%02d",Current_FW_ver);
 	DrawHZText12(msg,0,2,offset_Y+1*line_x, 0x7FFF,1);	
@@ -609,12 +610,11 @@ void IWRAM_CODE Check_FW_update(u16 Current_FW_ver,u16 Built_in_ver)
 			
 			while(1);
 			break;
-			*/
 		}	
 		else if (keys & KEY_B) {
 			break;
 		}
-	}
+	}*/
 }
 // --------------------------------------------------------------------
 static const u32 crc32tab[] = {
