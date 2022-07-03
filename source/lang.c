@@ -157,7 +157,7 @@ const char zh_set_btn[]="设置";
 const char zh_ok_btn[]="保存";
 const char zh_formatnor_info[]="确定?大约4分钟";
 
-const char zh_theme_credit[]="Simple主题 v1.3";
+const char zh_theme_credit[]="SimpleDE主题 v1.3";
 const char zh_theme_credit2[]="by Sterophonick";
 
 const char zh_check_sav[]="检查SAV文件";
@@ -182,9 +182,9 @@ const char zh_recently_play[]="最近游戏列表";
 
 const char zh_START_help[]="打开最近游戏列表";
 const char zh_SELECT_help[]="更多选项";
-const char zh_L_A_help[]="反转冷启动选项";
+const char zh_L_A_help[]="反选冷启动选项";
 const char zh_LSTART_help[]="删除文件";
-const char zh_LSELECT_help[]="删除保存文件";
+const char zh_LSELECT_help[]="删除存档";
 const char zh_online_manual[]="  在线说明书";
 
 const char zh_no_game_played[]="最近还没玩过游戏";
@@ -230,7 +230,7 @@ const char zh_copying_data[]="复制ROM...";
 const char zh_generating_emu[]="生成模拟器...";
 
 const char zh_enabled[]="已启用";
-const char zh_disabled[]="残障人士";
+const char zh_disabled[]="已禁用";
 
 const char *zh_rom_menu[]={
 	"直接启动",
