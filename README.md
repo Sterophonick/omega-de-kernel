@@ -7,7 +7,7 @@ based on Simple DE by Sterophonick
 
 ##
 ### Screen shots
-//screenscoots//
+//screenshots//
 
 
 Official forum thread:
