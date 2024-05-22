@@ -1,19 +1,28 @@
 ###### FORKED FROM https://github.com/ez-flash/omega-de-kernel
 
-# SimpleLight for EZ Flash Omega Definitive Edition
+# Simpledark DE for EZ Flash Omega Definitive Edition
+based on Simple DE by Sterophonick
 ###### *If you're looking for SimpleLight for the **original** EZ Flash Omega, check here: https://github.com/Sterophonick/SimpleLight*
+###### *If you're looking for SimpleLight for the **original** EZ Flash Omega, check here: https://github.com/Sterophonick/omega-de-kernel*
 
-Hello all!
+##
+### Screen shots
+![20240508_191526](https://github.com/f3bandit/omega-de-kernel/assets/4943324/a90cbe58-49df-4f5e-9347-8037ebb017fe)
+![20240508_191521](https://github.com/f3bandit/omega-de-kernel/assets/4943324/7bf732b0-89a1-4de9-8e56-84ee15a355fb)
+![20240508_191506](https://github.com/f3bandit/omega-de-kernel/assets/4943324/aa2f12c7-8d70-401a-9e2d-4b2640c959f9)
+![20240508_191434](https://github.com/f3bandit/omega-de-kernel/assets/4943324/223c76a1-1d0c-4d18-9df3-7767459cab01)
+![20240508_191427](https://github.com/f3bandit/omega-de-kernel/assets/4943324/8f583010-7bd4-47e8-ad9d-478e1bfb5685)
+![20240508_191424](https://github.com/f3bandit/omega-de-kernel/assets/4943324/493f79f6-aa2f-4202-bffb-95a20bfca719)
+![20240508_191657](https://github.com/f3bandit/omega-de-kernel/assets/4943324/717c200a-c05a-44d9-8530-564967ef9695)
+![20240508_191652](https://github.com/f3bandit/omega-de-kernel/assets/4943324/0265a00a-1343-44ff-a940-430103534381)
+![20240508_191648](https://github.com/f3bandit/omega-de-kernel/assets/4943324/002646ba-bbb6-4032-888e-490dbae48d2e)
+![20240508_191642](https://github.com/f3bandit/omega-de-kernel/assets/4943324/845e1b43-115a-4dd9-b48c-4cea5d0440f6)
+![20240508_191634](https://github.com/f3bandit/omega-de-kernel/assets/4943324/2409a280-1206-4d8f-b9af-53bbaf13df2a)
+![20240508_191621](https://github.com/f3bandit/omega-de-kernel/assets/4943324/d2010b9b-2238-4680-bec3-4b619bd3ae59)
+![20240508_191549](https://github.com/f3bandit/omega-de-kernel/assets/4943324/f2b4f056-9c91-412b-b03f-1dbffdbca147)
+![20240508_191543](https://github.com/f3bandit/omega-de-kernel/assets/4943324/4d5ad499-976a-4d4e-89f8-53dd7446c170)
+![20240508_191530](https://github.com/f3bandit/omega-de-kernel/assets/4943324/3802e0b0-37f8-40b4-9dc9-3223ce73cefc)
 
-I have been working on a new theme for the EZ-Flash Omega, and I call it Simple.
-
-It is a nice rounded theme with both light and dark options, and allows for many, many more file types to be used, such as Master System and ZX Spectrum ROMs to be launched, along with the ability to view bitmap images, read text documents, and play music. (shoutouts to Kuwanger for PogoShell)
-
-I completely redid all of the graphics, along with using a different font.
-
-It also uses the 2019-05-04 version of Goomba Color, and has a save backup feature (shoutouts to Veikkos)
-
-Hope everyone likes it!
 
 Official forum thread:
 https://gbatemp.net/threads/new-theme-for-ez-flash-omega.520665/
@@ -99,32 +108,19 @@ _**ALSO YOU MUST USE THE OFFICIAL KERNEL TO UPDATE THE FIRMWARE; THIS DOES NOT A
 * F8Z (Chip-8)
 
 ### How to build 
-1. Install [devkitPro](https://devkitpro.org/)
+1. Install devkitPro https://devkitpro.org/
 2. Set the following environment variables to their correct directories: `DEVKITPRO, DEVKITARM, LIBGBA`
 3. Comment or uncomment the `#define DARK` line in `draw.h`. If uncommented, a dark theme is generated.
 4. Run the command `make`. If done successfully, this should give you an `ezkernel.bin` file.
 5. Follow the installation instructions above.
 4. Update your flashcart and enjoy! :)
 
-### Special Greetz & Contributors:
-Sasq\
-Moonlight\
-Kuwanger\
-veikkos\
-DarkFader\
-CoolHJ\
-Let's Emu!\
-Izder456\
-NuVanDibe\
-SLKun\
-Mintmoon\
-hitsgamer\
-Rocky5
-
 ### Credits
-[EZ-FLASH](https://www.ezflash.cn/) - The original firmware & hardware creators\
-Kuwanger - PogoShell plugin integration\
+Analogue https://www.analogue.co/ for their amazing FPGA hardware\
+EZ-FLASH https://www.ezflash.cn/ - The original firmware & hardware creators\
 Sterophonick - SIMPLE theme for EZO & EZODE\
+Techiesaru - For Patch fixes\
+Kuwanger - PogoShell plugin integration (RIP)\
 fluBBa - SMSAdvance, MSXAdvance, Cologne for GBA, Goomba for GBA (Original), PCEAdvance, PocketNES, SNESAdvance, Wasabi, NGPAdvance, SwanAdvance\
-[Jaga](https://github.com/EvilJagaGenius) - [Jaga's Goomba Color fork](https://github.com/EvilJagaGenius/jagoombacolor)\
-...and others!
+Jaga https://github.com/EvilJagaGenius - Jaga's Goomba Color fork https://github.com/EvilJagaGenius/jagoombacolor\
+
