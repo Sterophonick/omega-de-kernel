@@ -49,8 +49,11 @@ void Show_help_window()
 		
 	DrawHZText12(gl_online_manual,0,240-70-7,77, gl_color_text,1);
 
-	DrawHZText12(gl_theme_credit, 0, 4, 105, gl_color_selected, 1);
-	DrawHZText12(gl_theme_credit2, 0, 4, 120, gl_color_selected, 1);
+	DrawHZText12(gl_theme_credit, 0, 4, 90, gl_color_selected, 1);
+	DrawHZText12(gl_theme_credit2, 0, 4, 105, gl_color_selected, 1);
+	DrawHZText12(gl_theme_credit3, 0, 4, 120, gl_color_selected, 1);
+	DrawHZText12(gl_theme_credit4, 0, 4, 135, gl_color_selected, 1);
+
 	while(1)
 	{
 		VBlankIntrWait(); 	

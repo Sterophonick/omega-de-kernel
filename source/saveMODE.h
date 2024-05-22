@@ -1374,19 +1374,19 @@ const SAVE_MODE_  __attribute__((aligned(4))) saveMODE_table[] = {
 {"BYWE",0x11},//1378 - Yu-Gi-Oh! World Championship Tournament 2004(US).zip
 {"AC7E",0x00},//1379 - CT Special Forces(US).zip
 {"ALEE",0x22},//1380 - Bruce Lee - Return of the Legend(US).zip
-{"FICJ",0x11},//1381 - Famicom Mini Vol. 03 - Ice Climber(JP).zip
-{"FXVJ",0x11},//1382 - Famicom Mini Vol. 07 - Xevious(JP).zip
-{"FSMJ",0x11},//1383 - Famicom Mini Vol. 01 - Super Mario Bros.(JP).zip
+{"FICJ",0x21},//1381 - Famicom Mini Vol. 03 - Ice Climber(JP).zip
+{"FXVJ",0x21},//1382 - Famicom Mini Vol. 07 - Xevious(JP).zip
+{"FSMJ",0x21},//1383 - Famicom Mini Vol. 01 - Super Mario Bros.(JP).zip
 {"BPHP",0x22},//1384 - Pitfall - The Lost Expedition(EU).zip
-{"FDKJ",0x11},//1385 - Famicom Mini Vol. 02 - Donkey Kong(JP).zip
-{"FZLJ",0x11},//1386 - Famicom Mini Vol. 05 - The Hyrule Fantasy - Zelda no Densetsu 1(JP).zip
-{"FMPJ",0x11},//1387 - Famicom Mini Vol. 08 - Mappy(JP).zip
+{"FDKJ",0x21},//1385 - Famicom Mini Vol. 02 - Donkey Kong(JP).zip
+{"FZLJ",0x22},//1386 - Famicom Mini Vol. 05 - The Hyrule Fantasy - Zelda no Densetsu 1(JP).zip
+{"FMPJ",0x21},//1387 - Famicom Mini Vol. 08 - Mappy(JP).zip
 {"ACYD",0x22},//1388 - Chessmaster(DE).zip
 {"A4ND",0x11},//1389 - Harvest Moon - Friends of Mineral Town(DE).zip
-{"FSOJ",0x11},//1390 - Famicom Mini Vol. 10 - Star Soldier(JP).zip
-{"FEBJ",0x00},//1391 - Famicom Mini Vol. 04 - Excitebike(JP).zip
-{"FBMJ",0x11},//1392 - Famicom Mini Vol. 09 - Bomberman(JP).zip
-{"FPMJ",0x11},//1393 - Famicom Mini Vol. 06 - Pac-Man(JP).zip
+{"FSOJ",0x22},//1390 - Famicom Mini Vol. 10 - Star Soldier(JP).zip
+{"FEBJ",0x22},//1391 - Famicom Mini Vol. 04 - Excitebike(JP).zip
+{"FBMJ",0x22},//1392 - Famicom Mini Vol. 09 - Bomberman(JP).zip
+{"FPMJ",0x21},//1393 - Famicom Mini Vol. 06 - Pac-Man(JP).zip
 {"BPTP",0x00},//1394 - Peter Pan - The Motion Picture Event(EU).zip
 {"BPHF",0x22},//1395 - Pitfall - L'Expedition Perdue(FR).zip
 {"AZIY",0x00},//1396 - Finding Nemo(EU).zip
@@ -1484,16 +1484,16 @@ const SAVE_MODE_  __attribute__((aligned(4))) saveMODE_table[] = {
 {"BM5E",0x33},//1489 - Mario vs. Donkey Kong(US).zip
 {"B3SE",0x33},//1490 - Sonic Advance 3(US).zip
 {"AQ2P",0x11},//1491 - Gadget Racers(EU).zip
-{"FTWJ",0x11},//1492 - Famicom Mini Vol. 19 - Twin Bee(JP).zip
-{"FBFJ",0x11},//1493 - Famicom Mini Vol. 13 - Balloon Fight(JP).zip
-{"FMKJ",0x11},//1494 - Famicom Mini Vol. 18 - Makaimura(JP).zip
-{"FDDJ",0x11},//1495 - Famicom Mini Vol. 16 - Dig Dug(JP).zip
-{"FMBJ",0x11},//1496 - Famicom Mini Vol. 11 - Mario Bros.(JP).zip
-{"FTBJ",0x11},//1497 - Famicom Mini Vol. 17 - Takahashi Meijin no Bouken Shima(JP).zip
-{"FGGJ",0x11},//1498 - Famicom Mini Vol. 20 - Ganbare Goemon! Karakuri Douchuu(JP).zip
-{"FWCJ",0x11},//1499 - Famicom Mini Vol. 14 - Wrecking Crew(JP).zip
-{"FDMJ",0x11},//1500 - Famicom Mini Vol. 15 - Dr. Mario(JP).zip
-{"FCLJ",0x11},//1501 - Famicom Mini Vol. 12 - Clu Clu Land(JP).zip
+{"FTWJ",0x21},//1492 - Famicom Mini Vol. 19 - Twin Bee(JP).zip
+{"FBFJ",0x21},//1493 - Famicom Mini Vol. 13 - Balloon Fight(JP).zip
+{"FMKJ",0x21},//1494 - Famicom Mini Vol. 18 - Makaimura(JP).zip
+{"FDDJ",0x21},//1495 - Famicom Mini Vol. 16 - Dig Dug(JP).zip
+{"FMBJ",0x21},//1496 - Famicom Mini Vol. 11 - Mario Bros.(JP).zip
+{"FTBJ",0x21},//1497 - Famicom Mini Vol. 17 - Takahashi Meijin no Bouken Shima(JP).zip
+{"FGGJ",0x21},//1498 - Famicom Mini Vol. 20 - Ganbare Goemon! Karakuri Douchuu(JP).zip
+{"FWCJ",0x21},//1499 - Famicom Mini Vol. 14 - Wrecking Crew(JP).zip
+{"FDMJ",0x21},//1500 - Famicom Mini Vol. 15 - Dr. Mario(JP).zip
+{"FCLJ",0x21},//1501 - Famicom Mini Vol. 12 - Clu Clu Land(JP).zip
 {"BDTE",0x22},//1502 - River City Ransom EX(US).zip
 {"BHTE",0x22},//1503 - Harry Potter and the Prisoner of Azkaban(UE).zip
 {"BTFJ",0x11},//1504 - Tokyo Majin Gakuen - Fuju Houroku(JP).zip
@@ -1504,16 +1504,16 @@ const SAVE_MODE_  __attribute__((aligned(4))) saveMODE_table[] = {
 {"BD4E",0x22},//1509 - Crash Bandicoot Purple - Ripto's Rampage(US).zip
 {"BSTE",0x22},//1510 - Spyro Orange - The Cortex Conspiracy(US).zip
 {"AA9E",0x22},//1511 - Duel Masters - Sempai Legends(US).zip
-{"FZLE",0x11},//1512 - Classic NES Series - The Legend of Zelda(UE).zip
+{"FZLE",0x22},//1512 - Classic NES Series - The Legend of Zelda(UE).zip
 {"BSBP",0x33},//1513 - Sonic Battle(EU).zip
-{"FSME",0x11},//1514 - Classic NES Series - Super Mario Bros.(UE).zip
+{"FSME",0x21},//1514 - Classic NES Series - Super Mario Bros.(UE).zip
 {"MSBE",0x00},//1515 - Game Boy Advance Video - Strawberry Shortcake - Volume 1(US).zip
-{"FBME",0x11},//1516 - Classic NES Series - Bomberman(UE).zip
-{"FEBE",0x11},//1517 - Classic NES Series - Excitebike(UE).zip
-{"FXVE",0x11},//1518 - Classic NES Series - Xevious(UE).zip
-{"FP7E",0x11},//1519 - Classic NES Series - Pac-Man(UE).zip
-{"FICE",0x11},//1520 - Classic NES Series - Ice Climber(UE).zip
-{"FDKE",0x11},//1521 - Classic NES Series - Donkey Kong(UE).zip
+{"FBME",0x21},//1516 - Classic NES Series - Bomberman(UE).zip
+{"FEBE",0x22},//1517 - Classic NES Series - Excitebike(UE).zip
+{"FXVE",0x21},//1518 - Classic NES Series - Xevious(UE).zip
+{"FP7E",0x21},//1519 - Classic NES Series - Pac-Man(UE).zip
+{"FICE",0x21},//1520 - Classic NES Series - Ice Climber(UE).zip
+{"FDKE",0x21},//1521 - Classic NES Series - Donkey Kong(UE).zip
 {"MFOE",0x00},//1522 - Game Boy Advance Video - Fairly Odd Parents!, The - Volume 1(US).zip
 {"BUCE",0x22},//1523 - Ultimate Card Games(UE).zip
 {"MGUE",0x00},//1524 - Game Boy Advance Video - All Grown Up! - Volume 1(US).zip
@@ -1607,16 +1607,16 @@ const SAVE_MODE_  __attribute__((aligned(4))) saveMODE_table[] = {
 {"BGNE",0x00},//1612 - Mobile Suit Gundam Seed - Battle Assault(US).zip
 {"BMFE",0x22},//1613 - Madden NFL 2005(US).zip
 {"BTBE",0x00},//1614 - Thunderbirds(UE).zip
-{"FM2J",0x11},//1615 - Famicom Mini Vol. 21 - Super Mario Bros. 2(JP).zip
-{"FNMJ",0x11},//1616 - Famicom Mini Vol. 22 - Nazo no Murasame Jou(JP).zip
-{"FMRJ",0x11},//1617 - Famicom Mini Vol. 23 - Metroid(JP).zip
-{"FPTJ",0x11},//1618 - Famicom Mini Vol. 24 - Hikari Shinwa - Palthena no Kagami(JP).zip
-{"FLBJ",0x11},//1619 - Famicom Mini Vol. 25 - The Legend of Zelda 2 - Link no Bouken(JP).zip
-{"FFMJ",0x11},//1620 - Famicom Mini Vol. 26 - Famicom Mukashi Banashi - Shin Onigashima - Zen Kou Hen(JP).zip
-{"FTKJ",0x11},//1621 - Famicom Mini Vol. 27 - Famicom Tantei Club - Kieta Koukeisha - Zen Kou Hen(JP).zip
-{"FTUJ",0x11},//1622 - Famicom Mini Vol. 28 - Famicom Tantei Club Part II - Ushiro ni Tatsu Shoujo - Zen Kou Hen(JP).zip
-{"FADJ",0x11},//1623 - Famicom Mini Vol. 29 - Akumajou Dracule(JP).zip
-{"FSDJ",0x11},//1624 - Famicom Mini Vol. 30 - SD Gundam World - Gachapon Senshi Scramble Wars(JP).zip
+{"FM2J",0x21},//1615 - Famicom Mini Vol. 21 - Super Mario Bros. 2(JP).zip
+{"FNMJ",0x21},//1616 - Famicom Mini Vol. 22 - Nazo no Murasame Jou(JP).zip
+{"FMRJ",0x22},//1617 - Famicom Mini Vol. 23 - Metroid(JP).zip
+{"FPTJ",0x22},//1618 - Famicom Mini Vol. 24 - Hikari Shinwa - Palthena no Kagami(JP).zip
+{"FLBJ",0x22},//1619 - Famicom Mini Vol. 25 - The Legend of Zelda 2 - Link no Bouken(JP).zip
+{"FFMJ",0x21},//1620 - Famicom Mini Vol. 26 - Famicom Mukashi Banashi - Shin Onigashima - Zen Kou Hen(JP).zip
+{"FTKJ",0x21},//1621 - Famicom Mini Vol. 27 - Famicom Tantei Club - Kieta Koukeisha - Zen Kou Hen(JP).zip
+{"FTUJ",0x21},//1622 - Famicom Mini Vol. 28 - Famicom Tantei Club Part II - Ushiro ni Tatsu Shoujo - Zen Kou Hen(JP).zip
+{"FADJ",0x21},//1623 - Famicom Mini Vol. 29 - Akumajou Dracule(JP).zip
+{"FSDJ",0x22},//1624 - Famicom Mini Vol. 30 - SD Gundam World - Gachapon Senshi Scramble Wars(JP).zip
 {"BSNE",0x00},//1625 - SpongeBob SquarePants - The Movie(US).zip
 {"BSLE",0x22},//1626 - Tom Clancy's Splinter Cell - Pandora Tomorrow(US).zip
 {"BPHE",0x22},//1627 - Pitfall - The Lost Expedition(US).zip
@@ -1734,10 +1734,10 @@ const SAVE_MODE_  __attribute__((aligned(4))) saveMODE_table[] = {
 {"BGTP",0x22},//1742 - Grand Theft Auto Advance(EU).zip
 {"BZMJ",0x22},//1743 - Zelda no Densetsu - Fushigi no Boushi(JP).zip
 {"BXAE",0x00},//1744 - Texas Hold'em Poker(US).zip
-{"FLBE",0x11},//1745 - Classic NES Series - Zelda II - The Adventure of Link(UE).zip
-{"FADE",0x11},//1746 - Classic NES Series - Castlevania(UE).zip
-{"FDME",0x11},//1747 - Classic NES Series - Dr. Mario(UE).zip
-{"FMRE",0x11},//1748 - Classic NES Series - Metroid(UE).zip
+{"FLBE",0x22},//1745 - Classic NES Series - Zelda II - The Adventure of Link(UE).zip
+{"FADE",0x21},//1746 - Classic NES Series - Castlevania(UE).zip
+{"FDME",0x21},//1747 - Classic NES Series - Dr. Mario(UE).zip
+{"FMRE",0x21},//1748 - Classic NES Series - Metroid(UE).zip
 {"BICE",0x00},//1749 - Incredibles, The(UE).zip
 {"BELE",0x00},//1750 - Elf - The Movie(US).zip
 {"B3AE",0x22},//1751 - Lord of the Rings, The - The Third Age(UE).zip
@@ -2805,7 +2805,9 @@ const SAVE_MODE_  __attribute__((aligned(4))) saveMODE_table[] = {
 {"AX4J",0x31},//2817 - Super Mario Advance 4(JP).zip
 {"B3DJ",0x11},//2818 - Densetsu no Stafy 3(JP).zip
 {"BRIJ",0x11},//2819 - Rhythm Tengoku(JP).zip
-
+{"FADP",0x21},//NES Classics - Castlevania (EU)
+{"FSRJ",0x22},//Famicom Mini - Dai-2-ji Super Robot Taisen (Japan) (Promo)
+{"FGZJ",0x21},//Famicom Mini - Kidou Senshi Z Gundam - Hot Scramble (Japan) (Promo)
 {"AWRC",0x32},//Advance_Wars_(Prototype,_iQue).zip
 {"AVFC",0x11},//Densetsu_no_Stafy2_(Prototype,_iQue).zip
 {"ASTC",0x11},//Densetsu_no_Stafy_(Prototype,_iQue).zip
@@ -2818,6 +2820,14 @@ const SAVE_MODE_  __attribute__((aligned(4))) saveMODE_table[] = {
 {"A88C",0x22},//Mario_Luigi_Super_Star_Saga_(Prototype,_iQue).zip
 {"BIIC",0x33},//Polarium_Advance_(Prototype,_iQue).zip
 {"AGLC",0x22},//Tomato_Adventure_(Prototype,_iQue).zip
+
+{"SBJU",0x11},//???? - Super Block Jump - Game Boy Advance Edition (U) (PD).zip
+{"Home",0x11},//???? - Coin Adventure (U) (PD).zip
+{"A2UU",0x11},//???? - EarthBound - The Giygas Chronicles (U) (Hack).zip
+{"ABHE",0x11},//???? - Blowhole (U) (PD).zip
+{"ZGN0",0x11},//???? - Uranus (U) (PD).zip
+{"TCHK",0x11},//???? - AGB_CHECKER
+{"ARSH",0x11},//???? - Tetanus On Drugs (U) (PD).zip
 
 {"FFFF",0x00}
 };

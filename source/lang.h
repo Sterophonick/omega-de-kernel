@@ -9,6 +9,8 @@ extern char* gl_file_overflow;
 
 extern char* gl_theme_credit;
 extern char* gl_theme_credit2;
+extern char* gl_theme_credit3;
+extern char* gl_theme_credit4;
 
 extern char* gl_menu_btn;
 extern char* gl_lastest_game;

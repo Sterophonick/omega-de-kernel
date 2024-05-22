@@ -7,23 +7,25 @@
 #include "ez_define.h"
 #include "draw.h"
 #include "GBApatch.h"
-#include "gba_nes_patch.h"
 #include "ezkernel.h"
 #include "reset_table.h"
 #include "lang.h"
 #include "showcht.h"
 #include "Ezcard_OP.h"
 
-
+void getNesBufferLoc(void);
 
 u32 windows_offset;
 u32 is_NORpatch;
 u32 g_Offset;
-u32 is_Nes;
+u32 is_Nes = 0;
 u32 Nes_index;
 u32 Nes_index_17_patch;
 u32 iTrimSize;
 u32 EA_offset;
+
+u32 bufferAddr = 0;
+u32 mirrorFixAddr = 0;
 
 u32 w_reset_on;
 u32 w_rts_on;
@@ -70,25 +72,6 @@ void Write(u32 romaddress, const u8* buffer, u32 size)
 		SetPSRampage(0);
 	}
 }
-//------------------------------------------------------------------
-void Patch_somegame(u32 *Data)
-{
-	u32 size = 0x7FF0;
-	if( *(u32*)GAMECODE == 0x50424732 )
-	{
-		for(u32 ii=0;ii<0x100;ii++)
-		{
-			if(0x3000000==Data[ii])
-			{
-				if(0x8000 ==Data[ii+1] )
-				{
-					Write((ii+1)*4,(u8*)&size,4 );
-				}
-			}
-		}
-	}
-}
-
 //------------------------------------------------------------------
 bool IWRAM_CODE PatchDragonBallZ(u32 *Data)
 {
@@ -199,52 +182,229 @@ bool IWRAM_CODE PatchDragonBallZ(u32 *Data)
 //------------------------------------------------------------------
 void IWRAM_CODE CheckNes(u32 *Data)
 {
-  u32 jump=Data[0];
-  if((jump&0xff000000)==0xea000000)
-  {
-		Nes_index=(jump&0xffffff)+2;
-		if((Data[Nes_index]&0xffffff00)==0xe28f5000&& \
-		   Data[Nes_index+1]==0xe8b503d3&&\
-		   Data[Nes_index+2]==0xe129f007&&\
-		   Data[Nes_index+3]==0xe281deba&&\
-		   Data[Nes_index+4]==0xe129f008&&\
-		   Data[Nes_index+5]==0xe281debe&&\
-		   Data[Nes_index+6]==0xe129f009&&\
-		   Data[Nes_index+7]==0xe281dc0b&&\
-		   Data[Nes_index+8]==0xe92d0003&&\
-		   Data[Nes_index+9]==0xef110000&&\
-		   Data[Nes_index+10]==0xe8bd8001)
+	u32 jump=Data[0];
+  
+	Nes_index = (jump & 0xFFFFFF) + 2;
+	
+	if ((((Data[Nes_index] & 0xFFFFFF00) == 0xE28F5000) || ((Data[Nes_index] & 0xFFFFFF00) == 0xE28F0000)) && \
+		((Data[Nes_index + 1] == 0xE8B503D3) || (Data[Nes_index + 1] == 0xE890001E)) &&\
+		((Data[Nes_index + 2] == 0xE129F007) || (Data[Nes_index + 2] == 0xE129F001)) &&\
+		((Data[Nes_index + 3] == 0xE281DEBA) || (Data[Nes_index + 3] == 0xE1A0D002)) &&\
+		((Data[Nes_index + 4] == 0xE129F008) || (Data[Nes_index + 4] == 0xE129F003)) &&\
+		((Data[Nes_index + 5] == 0xE281DEBE) || (Data[Nes_index + 5] == 0xE282D040)) &&\
+		((Data[Nes_index + 6] == 0xE129F009) || (Data[Nes_index + 6] == 0xE129F004)) &&\
+		((Data[Nes_index + 7] == 0xE281DC0B) || (Data[Nes_index + 7] == 0xE242D0A0)) &&\
+		((Data[Nes_index + 8] == 0xE92D0003) || (Data[Nes_index + 8] == 0xE28F0020)) &&\
+		((Data[Nes_index + 9] == 0xEF110000) || (Data[Nes_index + 9] == 0xE24D1C0B)) &&\
+		((Data[Nes_index + 10] == 0xE8BD8001) || (Data[Nes_index+10] == 0xE8B00030)))
+	{	
+		switch (Data[Nes_index])
 		{
-			if(Data[Nes_index]==0xe28f503c)
+			case 0xE28F503C:
 				is_Nes = 1;
-			else if (Data[Nes_index]==0xe28f5040)
-				is_Nes = 2;    		
+				break;
+			case 0xE28F5040:
+				is_Nes = 2;
+				break;
+			case 0xE28F0030:
+				is_Nes = 3;
+				break;
+		}
+	}
+}
+//---------------------------------------------------------------------------------
+void PatchNes(u32 *Data)
+{
+  if (is_Nes & 3)
+	{
+		u32 entryPoint, index2 = 0, patch = 0;
+		u8* patchbuffer = (u8*)_UnusedVram;
+		
+		getNesBufferLoc();
+		
+		dmaCopy((void*)gba_nes_patch_start, patchbuffer, gba_nes_patch_end - gba_nes_patch_start);
+		
+		if (is_Nes == 3)
+		{
+			entryPoint = 0xFC;
+			
+			*(vu32*)(patchbuffer + (dataStart - gba_nes_patch_start)) = 0x0800011C;
+			*(vu32*)(patchbuffer + (iwramHook - gba_nes_patch_start)) = 0x0300750C;
+			*(vu32*)(patchbuffer + (iwramReplace - gba_nes_patch_start)) = 0xEA00003D;
+			*(vu32*)(patchbuffer + (iwramSubLoc - gba_nes_patch_start)) = 0x03007608;
+			*(vu32*)(patchbuffer + (hookAddr - gba_nes_patch_start)) = 0x030074E4;
+			*(vu32*)(patchbuffer + (sramPatchFuncPtr - gba_nes_patch_start)) =  0x08000000 | (bufferAddr + (sramPatchFuncAlt - gba_nes_patch_start));
+			
+			vu8 altCmpBufferC[16] = {0x30, 0xB5, 0xA9, 0xB0, 0x0D, 0x1C, 0x00, 0x04, 0x04, 0x0C, 0x03, 0x48, 0x00, 0x68, 0x80, 0x88};
+			
+			dmaCopy((void*)altCmpBufferC, patchbuffer + (cmpBufferC - gba_nes_patch_start) , 0x10); 
 		}
 		else
-			is_Nes = 0;
-  }
+		{
+			entryPoint = 0x24 + (Nes_index * 4);
+			
+			if (!windows_offset)
+			{
+				Nes_index_17_patch=Data[Nes_index + 0x11 + is_Nes - 1];
+			}
+			
+			*(vu32*)(patchbuffer + (dataStart - gba_nes_patch_start)) = Nes_index_17_patch;
+			
+			index2=(Nes_index_17_patch-0x08000000)/4; 
+			
+			if (Data[index2-1-windows_offset/4]==0x3032)
+			{
+				*(vu32*)(patchbuffer + (hookAddr - gba_nes_patch_start)) = 0x060000F8;
+			}
+			
+			*(vu32*)(patchbuffer + (sramPatchFuncPtr - gba_nes_patch_start)) = 0x08000000 | (bufferAddr + (sramPatchFunc - gba_nes_patch_start));
+		}
+		
+		patch = 0xEA000000 | (((bufferAddr - entryPoint)  - 8) / 4);
+		Write(entryPoint,(u8*)&patch,sizeof(patch));
+		
+		Write(bufferAddr, patchbuffer, gba_nes_patch_end - gba_nes_patch_start);
+	}
 }
-//------------------------------------------------------------------
-bool PatchNes(u32 *Data)
+//---------------------------------------------------------------------------------
+void getNesBufferLoc()
 {
-  bool res=false;
-  if(is_Nes)
-  {
-      res=true;
-      u32 patch=0xea000000|(0x3fdf5-Nes_index);
-      Write(36+Nes_index*4,(u8*)&patch,sizeof(patch));
-      Write(0xff800,gba_nes_patch_bin,0x340);
-      if(windows_offset == 0)
-    	  Nes_index_17_patch=Data[Nes_index+17+is_Nes-1];
-      Write(0xff840,(u8*)&Nes_index_17_patch,sizeof(patch));
-      u32 index2=(Nes_index_17_patch-0x08000000)/4; 
-      if(Data[index2-1-windows_offset/4]==0x3032)
-      {
-        patch=0x060000f8;
-        Write(0xff86c,(u8*)&patch,sizeof(patch));
-      }
-  }
-  return res;
+	switch (*(u32*)GAMECODE)
+	{
+		case 0x454C5A46://1512 - Classic NES Series - The Legend of Zelda(UE)
+			bufferAddr = 0x19C9C;
+			break;
+		case 0x454D5346://1514 - Classic NES Series - Super Mario Bros.(UE)
+			bufferAddr = 0x27460;
+			break;
+		case 0x454D4246://1516 - Classic NES Series - Bomberman(UE)
+			bufferAddr = 0xBBFC;
+			break;
+		case 0x45424546://1517 - Classic NES Series - Excitebike(UE)
+			bufferAddr =  0xB614;
+			break;
+		case 0x45565846://1518 - Classic NES Series - Xevious(UE)
+			bufferAddr = 0x2DD38;
+			break;
+		case 0x45375046://1519 - Classic NES Series - Pac-Man(UE)
+			bufferAddr = 0x226F4;
+			break;
+		case 0x45434946://1520 - Classic NES Series - Ice Climber(UE)
+			bufferAddr = 0x239E4;
+			break;
+		case 0x454B4446://1521 - Classic NES Series - Donkey Kong(UE)
+			bufferAddr = 0x23194;
+			break;
+		case 0x45424C46://1745 - Classic NES Series - Zelda II - The Adventure of Link(UE)
+			bufferAddr = 0x9DCC0;
+			break;
+		case 0x45444146://1746 - Classic NES Series - Castlevania(U)
+			bufferAddr = 0x1BE2C;
+			break;
+		case 0x454D4446://1747 - Classic NES Series - Dr. Mario(UE)
+			bufferAddr = 0x3A290;
+			break;
+		case 0x45524D46://1748 - Classic NES Series - Metroid(UE)
+			bufferAddr = 0x20EFC;
+			break;
+		case 0x50444146://NES Classics - Castlevania(E)
+			bufferAddr = 0x1BE44;
+			break;
+		case 0x4A525346://Famicom Mini - Dai-2-ji Super Robot Taisen (Japan)
+			bufferAddr = 0xCC56C;
+			break;
+		case 0x4A5A4746://Famicom Mini - Kidou Senshi Z Gundam - Hot Scramble (Japan)
+			bufferAddr = 0x28760;
+			break;
+		case 0x4A4D5346://Famicom Mini 01 - Super Mario Bros. (Japan)
+		case 0x4A434946://Famicom Mini 03 - Ice Climber (Japan)
+			bufferAddr = 0x29078;
+			break;
+		case 0x4A4B4446://Famicom Mini 02 - Donkey Kong (Japan)
+			bufferAddr = 0x24DA4;
+			break;
+		case 0x4A424546://Famicom Mini 04 - Excitebike (Japan) (En)
+			bufferAddr = 0x97E0;
+			break;
+		case 0x4A4C5A46://Famicom Mini 05 - Zelda no Densetsu 1 - The Hyrule Fantasy (Japan)
+			bufferAddr = 0x1884C;
+			break;
+		case 0x4A4D5046://Famicom Mini 06 - Pac-Man (Japan) (En)
+			bufferAddr = 0x23E6C;
+			break;
+		case 0x4A565846://Famicom Mini 07 - Xevious (Japan) (En)
+			bufferAddr = 0x27560;
+			break;
+		case 0x4A504D46://Famicom Mini 08 - Mappy (Japan) (En)
+			bufferAddr = 0x24BF4;
+			break;
+		case 0x4A4D4246://Famicom Mini 09 - Bomber Man (Japan) (En)
+			bufferAddr = 0x9CEC;
+			break;
+		case 0x4A4F5346://Famicom Mini 10 - Star Soldier (Japan) (En)
+			bufferAddr = 0x11EAC;
+			break;
+		case 0x4A424D46://Famicom Mini 11 - Mario Bros. (Japan)
+			bufferAddr = 0x24470;
+			break;
+		case 0x4A4C4346://Famicom Mini 12 - Clu Clu Land (Japan)
+			bufferAddr = 0x243DC;
+			break;
+		case 0x4A464246://Famicom Mini 13 - Balloon Fight (Japan)
+			bufferAddr = 0x242CC;
+			break;
+		case 0x4A435746://Famicom Mini 14 - Wrecking Crew (Japan)
+			bufferAddr = 0x280D0;
+			break;
+		case 0x4A4D4446://Famicom Mini 15 - Dr. Mario (Japan)
+			bufferAddr = 0x3B378;
+			break;
+		case 0x4A444446://Famicom Mini 16 - Dig Dug (Japan)
+			bufferAddr = 0x2BF20;
+			break;
+		case 0x4A425446://Famicom Mini 17 - Takahashi Meijin no Bouken-jima (Japan)
+			bufferAddr = 0x23C0C;
+			break;
+		case 0x4A4B4D46://Famicom Mini 18 - Makaimura (Japan)
+			bufferAddr = 0x30568;
+			break;
+		case 0x4A575446://Famicom Mini 19 - Twin Bee (Japan)
+			bufferAddr = 0x390B4;
+			break;
+		case 0x4A474746://Famicom Mini 20 - Ganbare Goemon! - Karakuri Douchuu (Japan)
+			bufferAddr = 0x5BBC8;
+			break;
+		case 0x4A324D46://Famicom Mini 21 - Super Mario Bros. 2 (Japan)
+			bufferAddr = 0x14A98;
+			break;
+		case 0x4A4D4E46://Famicom Mini 22 - Nazo no Murasame Jou (Japan)
+			bufferAddr = 0x18E2C;
+			break;
+		case 0x4A524D46://Famicom Mini 23 - Metroid (Japan)
+			bufferAddr = 0x1BB2C;
+			break;
+		case 0x4A545046://Famicom Mini 24 - Hikari Shinwa - Palthena no Kagami (Japan)
+			bufferAddr = 0x1C110;
+			break;
+		case 0x4A424C46://Famicom Mini 25 - The Legend of Zelda 2 - Link no Bouken (Japan)
+			bufferAddr = 0x1F894;
+			break;
+		case 0x4A4D4646://Famicom Mini 26 - Famicom Mukashibanashi - Shin Onigashima - Zen, Kouhen (Japan)
+			bufferAddr = 0x324A4;
+			break;
+		case 0x4A4B5446://Famicom Mini 27 - Famicom Tantei Club - Kieta Koukeisha - Zen, Kouhen (Japan)
+			bufferAddr = 0x2E020;
+			break;
+		case 0x4A555446://Famicom Mini 28 - Famicom Tantei Club Part II - Ushiro ni Tatsu Shoujo - Zen, Kouhen (Japan)
+			bufferAddr = 0x2F5B4;
+			break;
+		case 0x4A444146://Famicom Mini 29 - Akumajou Dracula (Japan)
+			bufferAddr = 0x1D034;
+			break;
+		case 0x4A445346://Famicom Mini 30 - SD Gundam World - Gachapon Senshi Scramble Wars (Japan)
+			bufferAddr = 0x35A6C;
+			break;
+	}
 }
 //---------------------------------------------------------------------------------
 void Add2(u32 anOffset, u32 aValue)
@@ -270,16 +430,12 @@ void IWRAM_CODE PatchInternal(u32* Data,int iSize,u32 offset)
   {
     switch(Data[ii])
     {
-      case 0x3007FFC: // IRQ handler
+		case 0x3007FFC: // IRQ handler
+		case 0x3FFFFFC: // IRQ handler
         {
           Add2(ii, 0x3007FF4);//0x3007FFC��λ��
         }
         break;
-	  case 0x3FFFFFC: // IRQ handler
-	  {
-		  Add2(ii, 0x3007FF4);
-	  }
-	  break;
     }
   }
 }
@@ -623,7 +779,6 @@ void GBApatch_PSRAM(u32* address,int filesize)//Only once
 	CheckNes(address);
 	PatchNes(address);
 	PatchDragonBallZ(address);
-	//Check_Fire_Emblem();
 	Patch_somegame(address);
 	
 	if( (gl_rts_on==1) && (gl_cheat_on == 0)  && (gl_reset_on == 0)  && (gl_sleep_on == 0)  ) {
@@ -668,12 +823,10 @@ void GBApatch_NOR(u32* address,int filesize,u32 offset)
 		B_install_handler = 0xEA000000|((iTrimSize-8)/4);
 		Write(0,(u8*)&B_install_handler , 4); //B
 		spend_address = Get_spend_address(address);
-
-		Patch_somegame(address);
   }
 	PatchNes(address);
 	PatchDragonBallZ(address);
-	//Check_Fire_Emblem();
+	Patch_somegame(address);
 
 	if( (gl_rts_on==1) && (gl_cheat_on == 0)  && (gl_reset_on == 0)  && (gl_sleep_on == 0)  ) {
 		Patch_RTS_only(address);		
@@ -993,13 +1146,13 @@ u32 use_internal_engine(u8 gamecode[])
 
 		if( ((vu32*)pReadCache)[i] == *(vu32*)gamecode )
 		{				
-			result = 1;
+			result =1;
 			break;
 		}
 		i += (count0x3007FFC+1);
 	}	
-	if(result == 0) return 0;
-		
+	if(result==0)	return 0;
+	
 	#ifdef DEBUG
 		//DEBUG_printf("%d: %X VS %X %x",i,((vu32*)pReadCache)[i],*(vu32*)gamecode,count0x3007FFC);
 		//wait_btn();	
@@ -1156,6 +1309,24 @@ void Patch_SpecialROM_sleepmode(void)
 	case 0x45534341://2117 - Casper(US)
 		Add2(0xAD64/4, 0x494D6345);
 		break;
+	}
+}
+//------------------------------------------------------------------
+void Patch_somegame(u32 *Data)
+{
+	u32 size = 0x7FF0;
+	if( *(u32*)GAMECODE == 0x50424732 )
+	{
+  	for(u32 ii=0;ii<0x100;ii++)
+  	{
+   	 if(0x3000000==Data[ii])
+    	{
+    		if(0x8000 ==Data[ii+1] )
+    		{
+    			Write((ii+1)*4,(u8*)&size,4 );
+    		}
+    	}
+		}
 	}
 }
 //------------------------------------------------------------------

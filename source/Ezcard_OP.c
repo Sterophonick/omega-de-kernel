@@ -2,7 +2,6 @@
 #include <gba_interrupt.h>
 #include <gba_systemcalls.h>
 #include <gba_input.h>
-#include <gba_compression.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <gba_base.h>

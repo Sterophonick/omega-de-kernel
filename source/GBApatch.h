@@ -39,6 +39,17 @@ extern void RTS_only_Return_address_L(void);
 extern void RTS_only_SAVE_key(void);
 extern void RTS_only_LOAD_key(void);
 
+extern void gba_nes_patch_start(void);
+extern void gba_nes_patch_end(void);
+extern void dataStart(void);
+extern void iwramHook(void);
+extern void iwramReplace(void);
+extern void iwramSubLoc(void);
+extern void hookAddr(void);
+extern void sramPatchFuncPtr(void);
+extern void sramPatchFuncAlt(void);
+extern void sramPatchFunc(void);
+extern void cmpBufferC(void);
 
 extern void Fire_Emblem_0378_patch_start(void);
 extern void Fire_Emblem_0378_patch_end(void);

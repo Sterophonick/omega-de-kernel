@@ -71,10 +71,17 @@
 #include "icon_gba.h"
 #include "icon_folder.h"
 #include "icon_other.h"
+#include "icon_sav.h"
+#include "icon_plug.h"
+#include "icon_pat.h"
+#include "icon_pic.h"
+#include "icon_sys.h"
+#include "icon_cht.h"
+
 #include "Chinese_manual.h"
 #include "English_manual.h"
 
-#include "nor_icon.h"
+#include "icon_nor.h"
 #include "NOTFOUND.h"
 #include "splash.h"
 
@@ -152,22 +159,22 @@ u16 gl_SD_B;
 
 
 //----------------------------------------
-u16 gl_color_selected = RGB(00, 20, 26);
+u16 gl_color_selected = RGB(31, 0, 0);
 #ifdef DARK
 u16 gl_color_text = RGB(31, 31, 31);
-u16 gl_color_selectBG_sd = RGB(15, 15, 31);
-u16 gl_color_selectBG_nor = RGB(18, 3, 3);
-u16 gl_color_MENU_btn = RGB(00, 19, 29);
+u16 gl_color_selectBG_sd = RGB(31, 0, 0);
+u16 gl_color_selectBG_nor = RGB(0, 0, 0);
+u16 gl_color_MENU_btn = RGB(10, 10, 10);
 #else
-u16 gl_color_text = RGB(00, 00, 00);
-u16 gl_color_selectBG_sd = RGB(19, 19, 31);
-u16 gl_color_selectBG_nor = RGB(15, 28, 7);
-u16 gl_color_MENU_btn = RGB(23, 23, 23);
+u16 gl_color_text = RGB(31, 31, 31);
+u16 gl_color_selectBG_sd = RGB(31, 0, 0);
+u16 gl_color_selectBG_nor = RGB(31, 0, 0);
+u16 gl_color_MENU_btn = RGB(10, 10, 10);
 #endif
-u16 gl_color_cheat_count = RGB(00, 31, 00);
-u16 gl_color_cheat_black = RGB(00, 00, 00);
-u16 gl_color_NORFULL = RGB(31, 00, 00);
-u16 gl_color_btn_clean = RGB(8, 8, 31);
+u16 gl_color_cheat_count = RGB(31, 31, 31);
+u16 gl_color_cheat_black = RGB(0, 0, 0);
+u16 gl_color_NORFULL = RGB(0, 0, 0);
+u16 gl_color_btn_clean = RGB(31, 0, 0);
 u16 SAV_info_buffer [0x200]EWRAM_BSS;
 //******************************************************************************
 void delay(u32 R0)
@@ -192,45 +199,7 @@ void wait_btn()
 	//while(*(vu16*)0x04000130 != 0x3FF );
 }
 //---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-u32 Copy_file(const char* src, const char* dst)
-{
-	u32 ret = 0;
-	UINT read_ret;
-	UINT write_ret;
-	u32 filesize;
-	u32 res;
-	u32 blocknum;
-	FIL dst_file;
 
-	res = f_open(&gfile, src, FA_READ);
-	if (res == FR_OK)
-	{
-		res = f_open(&dst_file, dst, FA_WRITE | FA_CREATE_ALWAYS);
-		if (res == FR_OK)
-		{
-			filesize = f_size(&gfile);
-			f_lseek(&gfile, 0x0000);
-
-			for (blocknum = 0x0000; blocknum < filesize; blocknum += 0x20000)
-			{
-				f_read(&gfile, pReadCache, 0x20000, &read_ret);
-				f_write(&dst_file, pReadCache, read_ret, &write_ret);
-				if (write_ret != read_ret)
-					break;
-				else
-					ret = 1;
-			}
-
-			f_close(&dst_file);
-
-			if (!ret) f_unlink(dst);
-		}
-		f_close(&gfile);
-	}
-
-	return ret;
-}
 //---------------------------------------------------------------------------------
 void Get_file_size(u32 num,char*str)
 {
@@ -356,27 +325,48 @@ void Show_ICON_filename_SD(u32 show_offset,u32 file_select,u32 haveThumbnail)
 		}
 		else if(!strcasecmp(&(pfilename[strlen8-3]), "gbc"))
 		{
-			icon = (u16*)(gImage_icon_GB);
+			icon = (u16*)(gImage_icon_GBC);
 		}
 		else if(!strcasecmp(&(pfilename[strlen8-2]), "gb"))
 		{
 			icon = (u16*)(gImage_icon_GB);
 		}
 		else if(!strcasecmp(&(pfilename[strlen8-3]), "nes"))
-		{
+	    {
 			icon = (u16*)(gImage_icon_FC);
 		}
 		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "bin")) { //.bin file
+			icon = (u16*)(gImage_icon_sys);
+		}
+		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "img")) { //.img file
+			icon = (u16*)(gImage_icon_sys);
+		}
+		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "pat")) { //.pat file
+			icon = (u16*)(gImage_icon_pat);
+		}
+		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "exe")) { //.exe file
 			icon = (u16*)(gImage_icon_EXE);
+		}
+		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "cht")) { //.cht file
+			icon = (u16*)(gImage_icon_cht);
+		}
+		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "esv")) { //.esv file "sav"
+			icon = (u16*)(gImage_icon_sav);
+		}
+		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "rts")) { //.rts file "sav"
+			icon = (u16*)(gImage_icon_sav);
+		}
+		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "sav")) { //.rts file "sav"
+			icon = (u16*)(gImage_icon_sav);
 		}
 		else if (!strcasecmp(&(pfilename[strlen8 - 2]), "mb")) { //PogoShell Plugin/Multiboot image
-			icon = (u16*)(gImage_icon_EXE);
+			icon = (u16*)(gImage_icon_plug);
 		}
 		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "mbz")) { //Compressed PogoShell Plugin
-			icon = (u16*)(gImage_icon_EXE);
+			icon = (u16*)(gImage_icon_plug);
 		}
 		else if (!strcasecmp(&(pfilename[strlen8 - 4]), "mbap")) { //Compressed PogoShell Plugin
-			icon = (u16*)(gImage_icon_EXE);
+			icon = (u16*)(gImage_icon_plug);
 		}
 		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "sms")) { //Master System
 			icon = (u16*)(gImage_icon_SMS);
@@ -394,13 +384,13 @@ void Show_ICON_filename_SD(u32 show_offset,u32 file_select,u32 haveThumbnail)
 			icon = (u16*)(gImage_icon_NG);
 		}
 		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "jpg")) { //JPEG Image
-			icon = (u16*)(gImage_icon_IMG);
+			icon = (u16*)(gImage_icon_pic);
 		}
 		else if (!strcasecmp(&(pfilename[strlen8 - 4]), "jpeg")) { //JPEG Image
-			icon = (u16*)(gImage_icon_IMG);
+			icon = (u16*)(gImage_icon_pic);
 		}
 		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "bmp")) { //BMP Image
-			icon = (u16*)(gImage_icon_IMG);
+			icon = (u16*)(gImage_icon_pic);
 		}
 		else if (!strcasecmp(&(pfilename[strlen8 - 3]), "txt")) { //Text Document
 			icon = (u16*)(gImage_icon_TXT);
@@ -518,36 +508,6 @@ void Show_ICON_filename_SD(u32 show_offset,u32 file_select,u32 haveThumbnail)
 			DrawHZText12(msg,0,208,showy, name_color,1);
 		}
 	}
-}
-//---------------------------------------------------------------------------------
-void Backup_savefile(const char* filename)
-{
-	const char* backup_dir = "/BACKUP/SAVER";
-	u8 temp_filename[MAX_path_len] = { 0 };
-	u8 temp_filename_dst[MAX_path_len] = { 0 };
-	u32 temp_filename_length;
-
-	strncpy(temp_filename, backup_dir, sizeof(temp_filename) - 2);
-	temp_filename_length = strlen(temp_filename);
-	temp_filename[temp_filename_length++] = '/';
-
-	strncpy(temp_filename + temp_filename_length, filename, sizeof(temp_filename) - temp_filename_length - 2);
-	temp_filename_length = strlen(temp_filename);
-
-	f_mkdir(backup_dir);
-	strncpy(temp_filename_dst, temp_filename, sizeof(temp_filename_dst));
-
-	for (s8 i = 3; i >= 0; --i)
-	{
-		temp_filename[temp_filename_length] = '0' + i;
-		temp_filename_dst[temp_filename_length] = '0' + i + 1;
-
-		f_unlink(temp_filename_dst);
-		f_rename(temp_filename, temp_filename_dst);
-	}
-
-	temp_filename[temp_filename_length] = '0';
-	Copy_file(filename, temp_filename);
 }
 //---------------------------------------------------------------------------------
 void IWRAM_CODE Refresh_filename(u32 show_offset,u32 file_select,u32 updown,u32 haveThumbnail)
@@ -752,7 +712,7 @@ void Show_ICON_filename_NOR(u32 show_offset,u32 file_select)
 	for(line=0;line<need_show;line++)
 	{
 		if(line== file_select){
-			Clear(17,20 + file_select*14,240-17,13,gl_color_selectBG_nor,1);
+			Clear(17,20 + file_select*14,240-17,13,gl_color_selectBG_sd,1);
 		}		
 
 		DrawPic((u16*)gImage_icon_nor/*(gImage_icons+2*16*14*2)*/,
@@ -795,7 +755,7 @@ void Refresh_filename_NOR(u32 show_offset,u32 file_select,u32 updown)
 		showy1 = y_offset +(file_select-1)*14;
 		showy2 = y_offset +(file_select)*14;
 		ClearWithBG((u16*)gImage_NOR,17, 20 + xx1*14, clean_len, 13, 1);
-		Clear(17,20 + xx2*14,clean_len,13,gl_color_selectBG_nor,1);
+		Clear(17,20 + xx2*14,clean_len,13,gl_color_selectBG_sd,1);
 	}
 	else //if(updown ==3)//up
 	{
@@ -803,7 +763,7 @@ void Refresh_filename_NOR(u32 show_offset,u32 file_select,u32 updown)
 		xx2 = file_select+1;
 		showy1 = y_offset +(file_select)*14;
 		showy2 = y_offset +(file_select+1)*14;
-		Clear(17,20 + xx1*14,clean_len,13,gl_color_selectBG_nor,1);
+		Clear(17,20 + xx1*14,clean_len,13,gl_color_selectBG_sd,1);
 		ClearWithBG((u16*)gImage_NOR,17, 20 + xx2*14,clean_len, 13, 1);
 	}
 
@@ -1536,9 +1496,9 @@ u32 IWRAM_CODE Loadfile2PSRAM(TCHAR *filename)
 		f_lseek(&gfile, 0x0000);
 		for(blocknum=0x0000;blocknum<filesize;blocknum+=0x20000)
 		{		
-			sprintf(msg,"%luMb/%luMb",(blocknum)/0x20000,filesize/0x20000);
-			Clear(78+54,160-15,110,15,gl_color_cheat_black,1);
-			DrawHZText12(msg,0,78+54,160-15,gl_color_text,1);
+			sprintf(msg,"%luMb/%luMb",(blocknum)/0x20000, filesize/0x20000);
+			Clear(70+54,160-15,110,15, gl_color_cheat_black,1);
+			DrawHZText12(msg,0,70+54,160-15,gl_color_text,1);
 			f_read(&gfile, pReadCache, 0x20000, &ret);//pReadCache max 0x20000 Byte
 			
 			if((gl_reset_on==1) || (gl_rts_on==1) || (gl_sleep_on==1) || (gl_cheat_on==1))		    
@@ -1789,7 +1749,7 @@ void IWRAM_CODE make_pogoshell_arguments(TCHAR *cmdname, TCHAR *filename, u32 cm
 	// Passed in 32KB aligned
 	offset = offset + 0x08000000 + 8;
 
-	p = (u32*)pReadCache;
+	p = pReadCache;
 
 	// Magic value in ROM address space
 	*p++ = 0xFAB0BABE;
@@ -1815,8 +1775,7 @@ u32 IWRAM_CODE LoadEMU2PSRAM(TCHAR *filename,u32 is_EMU)
 	UINT  ret;
 	u32 filesize;
 	u32 res;
-    // u32 blocknum, blockoffset = gl_error_0; // why are you setting it to a string pointer? This is never brought up again outside of overwriting it.
-	u32 blocknum, blockoffset = 0;
+	u32 blocknum, blockoffset = gl_error_0;
 	char msg[20];
 	
 	u32 Address;
@@ -2166,8 +2125,20 @@ u32 Get_savefilesize(BYTE saveMODE)
 	{
 		case 0x00:savefilesize=0x0;break;//no save
 		case 0x11:savefilesize=0x8000;break;//SRAM_TYPE 32k
-		case 0x21:savefilesize=0x200;break;//EEPROM_TYPE 512
-		case 0x22:savefilesize=0x2000;break;//EEPROM_TYPE 8k	
+		case 0x21://EEPROM_TYPE 512
+			savefilesize=0x200;
+			if ((GAMECODE[0] == 'F') && ((GAMECODE[3] == 'E') || (GAMECODE[3] == 'P') || (GAMECODE[3] == 'J')))
+			{
+				saveMODE = 0x11; //Override save type if a Classic NES or Famicom Mini title is detected
+			}
+			break;
+		case 0x22://EEPROM_TYPE 8k	
+			savefilesize=0x2000;
+			if ((GAMECODE[0] == 'F') && ((GAMECODE[3] == 'E') || (GAMECODE[3] == 'J')))
+			{
+				saveMODE = 0x11; //Override save type if a Classic NES or Famicom Mini title is detected
+			}
+			break;
 		case 0x23:savefilesize=0x2000;break;//EEPROM_TYPE v125 v126 must use 8k
 		case 0x32:savefilesize=0x10000;break;//FLASH_TYPE 64k
 		case 0x33:savefilesize=0x10000;break;//FLASH512_TYPE 64k	
@@ -2346,7 +2317,75 @@ void Set_saveMODE(BYTE saveMODE)
 	//save to nor 
 	Save_SET_info(SET_info_buffer,0x200);
 }
+//---------------------------------------------------------------------------------
+u32 Copy_file(const char* src, const char* dst)
+{
+	u32 ret = 0;
+	UINT read_ret;
+	UINT write_ret;
+	u32 filesize;
+	u32 res;
+	u32 blocknum;
+	FIL dst_file;
 
+	res = f_open(&gfile, src, FA_READ);
+	if (res == FR_OK)
+	{
+		res = f_open(&dst_file, dst, FA_WRITE | FA_CREATE_ALWAYS);
+		if (res == FR_OK)
+		{
+			filesize = f_size(&gfile);
+			f_lseek(&gfile, 0x0000);
+
+			for (blocknum = 0x0000; blocknum < filesize; blocknum += 0x20000)
+			{
+				f_read(&gfile, pReadCache, 0x20000, &read_ret);
+				f_write(&dst_file, pReadCache, read_ret, &write_ret);
+				if (write_ret != read_ret)
+					break;
+				else
+					ret = 1;
+			}
+
+			f_close(&dst_file);
+
+			if (!ret) f_unlink(dst);
+		}
+		f_close(&gfile);
+	}
+
+	return ret;
+}
+//---------------------------------------------------------------------------------
+void Backup_savefile(const char* filename)
+{
+	const char* backup_dir = "/BACKUP/SAVER";
+	u8 temp_filename[MAX_path_len] = { 0 };
+	u8 temp_filename_dst[MAX_path_len] = { 0 };
+	u32 temp_filename_length;
+
+	strncpy(temp_filename, backup_dir, sizeof(temp_filename) - 2);
+	temp_filename_length = strlen(temp_filename);
+	temp_filename[temp_filename_length++] = '/';
+
+	strncpy(temp_filename + temp_filename_length, filename, sizeof(temp_filename) - temp_filename_length - 2);
+	temp_filename_length = strlen(temp_filename);
+
+	f_mkdir(backup_dir);
+	strncpy(temp_filename_dst, temp_filename, sizeof(temp_filename_dst));
+
+	for (s8 i = 3; i >= 0; --i)
+	{
+		temp_filename[temp_filename_length] = '0' + i;
+		temp_filename_dst[temp_filename_length] = '0' + i + 1;
+
+		f_unlink(temp_filename_dst);
+		f_rename(temp_filename, temp_filename_dst);
+	}
+
+	temp_filename[temp_filename_length] = '0';
+	Copy_file(filename, temp_filename);
+}
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------
@@ -2406,14 +2445,14 @@ int main(void) {
 	res = f_mount(&EZcardFs, "", 1);
 	if( res != FR_OK)
 	{
-		DrawHZText12(gl_init_error,0,2,20, gl_color_cheat_black,1);
-		DrawHZText12(gl_power_off,0,2,33, gl_color_cheat_black,1);
+		DrawHZText12(gl_init_error,0,2,20, gl_color_cheat_count,1);
+		DrawHZText12(gl_power_off,0,2,33, gl_color_cheat_count,1);
 		while(1);
 	}
 	else
 	{
-		DrawHZText12(gl_init_ok,0,2,20, gl_color_cheat_black,1);
-		DrawHZText12(gl_Loading,0,2,33, gl_color_cheat_black,1);
+		DrawHZText12(gl_init_ok,0,2,20, gl_color_cheat_count,1);
+		DrawHZText12(gl_Loading,0,2,33, gl_color_cheat_count,1);
 	}
 	VBlankIntrWait();	
 	
@@ -2432,6 +2471,7 @@ int main(void) {
 	Read_NOR_info();	
 	gl_norOffset = 0x000000;
 	game_total_NOR = GetFileListFromNor();//initialize to prevent direct writes to NOR without page turning
+	
 	if(game_total_NOR==0)
 	{
 		memset(pNorFS,00,sizeof(FM_NOR_FS)*MAX_NOR);
@@ -2622,7 +2662,7 @@ re_showfile:
 	    	if(page_num==NOR_list)
 	    	{
 					Refresh_filename_NOR(show_offset,file_select,updata);
-					ClearWithBG((u16*)gImage_NOR,185, 0, 30, 18, 1);
+					ClearWithBG(gImage_NOR,185, 0, 30, 18, 1);
 	    	}
 	    	else
 	    	{
@@ -2882,7 +2922,7 @@ void Boot_NOR_game(u32 show_offset,	u32 file_select,u32 key_L)
 	BYTE error_num;
 	u32 res;
 	
-	Clear(0, 0, 240, 160, gl_color_cheat_black, 1);
+	Clear(0, 0, 240, 160, gl_color_selectBG_sd, 1);
 	//DrawHZText12(gl_Loading,0,(240-strlen(gl_Loading)*6)/2,74, gl_color_text,1);
 
 	init_FAT_table();		
@@ -3279,7 +3319,7 @@ re_show_menu:
 	}	//3
 load_file:
 
-	Clear(0, 0, 240, 160, gl_color_cheat_black, 1);
+	Clear(0, 0, 240, 160, gl_color_selectBG_nor, 1);
 	//DrawHZText12(gl_Loading,0,(240-strlen(gl_Loading)*6)/2,74, gl_color_text,1);
 
 	u32 gamefilesize=0;
@@ -3412,9 +3452,8 @@ load_file:
 						f_read(&gfile, pReadCache, 0x20000, (UINT*)&ret);
 						f_close(&gfile);
 						SetTrimSize(pReadCache,gamefilesize,0x20000,0x0,SAVEMODE);						
-						
 						if((gl_engine_sel==0) || (gl_select_lang == 0xE2E2))
-						{				
+						{
 							get_find:
 			    		FAT_table_buffer[0x1F4/4] = SET_PARAMETER_MODE;
 							Send_FATbuffer(FAT_table_buffer,1);												
@@ -3424,15 +3463,15 @@ load_file:
 						}
 						else 
 						{
-							res=use_internal_engine(GAMECODE);
-							if(res == 1)
-							{
-								Send_FATbuffer(FAT_table_buffer,0);//Loading rom
-							}
-							else
-							{
-								goto get_find;
-							}
+			    		res=use_internal_engine(GAMECODE);	
+			    		if(res == 1) 
+			    		{
+			    			Send_FATbuffer(FAT_table_buffer,0);//Loading rom	
+			    		}
+			    		else
+			    		{
+			    			goto get_find;
+			    		}
 						}
 					}	
 	    		Patch_SpecialROM_sleepmode();//
@@ -3461,7 +3500,7 @@ load_file:
 				}
 				else if(res==2)
 				{
-					Clear(0,160-15,200,15,gl_color_cheat_black,1);
+					Clear(0,160-15,200,15,gl_color_selectBG_nor,1);
 					DrawHZText12(gl_NOR_full,0,0,160-15, gl_color_NORFULL,1);//"NOR FULL!"
 					wait_btn();	
 					return 1;
@@ -3501,8 +3540,8 @@ load_file:
 				}	
 				else if(res==2)
 				{
-			    Clear(0,160-15,200,15,gl_color_cheat_black,1);
-					DrawHZText12(gl_NOR_full,0,0,160-15, gl_color_NORFULL,1);//"NOR FULL!"
+			    Clear(0,160-15,200,15,gl_color_selectBG_nor,1);
+					DrawHZText12(gl_NOR_full,0,0,160-15, gl_color_selectBG_sd,1);//"NOR FULL!"
 					wait_btn();	
 					return 0;
 				}		
