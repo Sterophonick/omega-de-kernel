@@ -7,21 +7,7 @@ based on Simple DE by Sterophonick
 
 ##
 ### Screen shots
-![20240508_191526](https://github.com/f3bandit/omega-de-kernel/assets/4943324/a90cbe58-49df-4f5e-9347-8037ebb017fe)
-![20240508_191521](https://github.com/f3bandit/omega-de-kernel/assets/4943324/7bf732b0-89a1-4de9-8e56-84ee15a355fb)
-![20240508_191506](https://github.com/f3bandit/omega-de-kernel/assets/4943324/aa2f12c7-8d70-401a-9e2d-4b2640c959f9)
-![20240508_191434](https://github.com/f3bandit/omega-de-kernel/assets/4943324/223c76a1-1d0c-4d18-9df3-7767459cab01)
-![20240508_191427](https://github.com/f3bandit/omega-de-kernel/assets/4943324/8f583010-7bd4-47e8-ad9d-478e1bfb5685)
-![20240508_191424](https://github.com/f3bandit/omega-de-kernel/assets/4943324/493f79f6-aa2f-4202-bffb-95a20bfca719)
-![20240508_191657](https://github.com/f3bandit/omega-de-kernel/assets/4943324/717c200a-c05a-44d9-8530-564967ef9695)
-![20240508_191652](https://github.com/f3bandit/omega-de-kernel/assets/4943324/0265a00a-1343-44ff-a940-430103534381)
-![20240508_191648](https://github.com/f3bandit/omega-de-kernel/assets/4943324/002646ba-bbb6-4032-888e-490dbae48d2e)
-![20240508_191642](https://github.com/f3bandit/omega-de-kernel/assets/4943324/845e1b43-115a-4dd9-b48c-4cea5d0440f6)
-![20240508_191634](https://github.com/f3bandit/omega-de-kernel/assets/4943324/2409a280-1206-4d8f-b9af-53bbaf13df2a)
-![20240508_191621](https://github.com/f3bandit/omega-de-kernel/assets/4943324/d2010b9b-2238-4680-bec3-4b619bd3ae59)
-![20240508_191549](https://github.com/f3bandit/omega-de-kernel/assets/4943324/f2b4f056-9c91-412b-b03f-1dbffdbca147)
-![20240508_191543](https://github.com/f3bandit/omega-de-kernel/assets/4943324/4d5ad499-976a-4d4e-89f8-53dd7446c170)
-![20240508_191530](https://github.com/f3bandit/omega-de-kernel/assets/4943324/3802e0b0-37f8-40b4-9dc9-3223ce73cefc)
+//screenscoots//
 
 
 Official forum thread:
