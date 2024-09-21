@@ -1,7 +1,11 @@
 ###### FORKED FROM https://github.com/ez-flash/omega-de-kernel
+###### and
+###### FORKED FROM https://github.com/Sterophonick/omega-de-kernel
 
 # Simpledark DE for EZ Flash Omega Definitive Edition
 based on Simple DE by Sterophonick
+Please give him a shout out on the gbatemp forums for all his hard work and support he gives everyone on the forums 
+###### https://gbatemp.net/threads/new-theme-for-ez-flash-omega.520665/
 ###### *If you're looking for SimpleLight for the **original** EZ Flash Omega, check here: https://github.com/Sterophonick/SimpleLight*
 ###### *If you're looking for SimpleLight for the **original** EZ Flash Omega, check here: https://github.com/Sterophonick/omega-de-kernel*
 
