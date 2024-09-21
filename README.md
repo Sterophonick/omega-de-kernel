@@ -12,46 +12,41 @@ Please give him a shout out on the gbatemp forums for all his hard work and supp
 ##
 ### Screen shots
 
-<h1 align="center" id="title">SuperDark-Omega-DE</h1>
-
-<p align="center"><img src="https://github.com/f3bandit/SuperDark-Omega-DE" alt="project-image"></p>
-
 <h2>Project Screenshots:</h2>
 
-<img src="https://gbatemp.net/attachments/cart_boot_option-png.447362/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/cart_boot_option-png.447362/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/cheat_list-png.447363/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/cheat_list-png.447363/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/cheats_icon-png.447364/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/cheats_icon-png.447364/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/game_list_title_image_off-png.447365/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/game_list_title_image_off-png.447365/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/game_list_title_image_on-png.447366/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/game_list_title_image_on-png.447366/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/gb_icon-png.447367/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/gb_icon-png.447367/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/gba_icon-png.447368/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/gba_icon-png.447368/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/gbc_icon-png.447369/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/gbc_icon-png.447369/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/image_icon-png.447370/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/image_icon-png.447370/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/nes_icon-png.447371/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/nes_icon-png.447371/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/nor-flash-png.447372/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/nor-flash-png.447372/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/plugin_icon-png.447373/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/plugin_icon-png.447373/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/recent_list-png.447374/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/recent_list-png.447374/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/save_icon_esv-png.447375/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/save_icon_esv-png.447375/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/save_icon_rts-png.447376/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/save_icon_rts-png.447376/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/settings_a-png.447377/" alt="project-screenshot" width="128" height="85/">
+<img src="https://gbatemp.net/attachments/settings_a-png.447377/" width="15%"></img>
 
-<img src="https://gbatemp.net/attachments/settings_b-png.447378/" alt="project-screenshot" width="128" height="85/">
-
+<img src="https://gbatemp.net/attachments/settings_b-png.447378/" width="15%"></img>
 
 Official forum thread:
 https://gbatemp.net/threads/new-theme-for-ez-flash-omega.520665/
