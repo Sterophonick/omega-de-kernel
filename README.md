@@ -3,7 +3,8 @@
 ###### FORKED FROM https://github.com/Sterophonick/omega-de-kernel
 
 # Simpledark DE for EZ Flash Omega Definitive Edition
-Based on Simple DE by Sterophonick 
+Based on Simple DE by Sterophonick
+
 <img src="https://gbatemp.net/data/avatars/o/457/457315.jpg?1680061797" width="15%"></img> <img
 
 Please give him a shout out on the gbatemp forums for all his hard work and support he gives everyone on the forums. 
