@@ -11,11 +11,53 @@ Please give him a shout out on the gbatemp forums for all his hard work and supp
 
 ##
 ### Screen shots
-//screenshots//
+
+<h2>Project Screenshots:</h2>
+
+<img src="https://gbatemp.net/attachments/cart_boot_option-png.447362/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/cheat_list-png.447363/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/cheats_icon-png.447364/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/game_list_title_image_off-png.447365/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/game_list_title_image_on-png.447366/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/gb_icon-png.447367/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/gba_icon-png.447368/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/gbc_icon-png.447369/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/image_icon-png.447370/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/nes_icon-png.447371/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/nor-flash-png.447372/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/plugin_icon-png.447373/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/recent_list-png.447374/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/save_icon_esv-png.447375/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/save_icon_rts-png.447376/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/settings_a-png.447377/" alt="project-screenshot" width="128" height="400/">
+
+<img src="https://gbatemp.net/attachments/settings_b-png.447378/" alt="project-screenshot" width="128" height="400/">
 
 
 Official forum thread:
 https://gbatemp.net/threads/new-theme-for-ez-flash-omega.520665/
+
+## Ez-flash Omega DE Revision B Firmware update to version 7
+## Fixes sleep and mode B on analogue pocket
+## This update does not work on Revison A
+## You will need to buy a Revision B Omega DE
+## If you want this functionality
+
 
 ## Installation instructions:
 
@@ -25,9 +67,10 @@ _**ALSO YOU MUST USE THE OFFICIAL KERNEL TO UPDATE THE FIRMWARE; THIS DOES NOT A
 
 1. Copy the SYSTEM and BACKUP folder to the root of the SD Card.
 2. Move your IMGS, SAVER, RTS, and PATCH folders to SYSTEM.
-3. If you want the light theme, copy ezkernel-light.bin to the root of the SD Card. If you want the dark thing, do the same with ezkernel-dark.bin
+3. Copy omega-de-kernel-main.gba to the root of the SD Card.
 4. Rename the new kernel file to ezkernel.bin
-5. You're done!
+5. For Rev. B Omega DE carts unzip the RevB_update_FW7.zip and copy the RevB_update_FW7.gba to the root of your microsdcard
+6. You're done!
 
 ## Registered file types:
 ### Game ROMs
@@ -99,10 +142,14 @@ _**ALSO YOU MUST USE THE OFFICIAL KERNEL TO UPDATE THE FIRMWARE; THIS DOES NOT A
 
 ### How to build 
 1. Install devkitPro https://devkitpro.org/
-2. Set the following environment variables to their correct directories: `DEVKITPRO, DEVKITARM, LIBGBA`
-3. Comment or uncomment the `#define DARK` line in `draw.h`. If uncommented, a dark theme is generated.
-4. Run the command `make`. If done successfully, this should give you an `ezkernel.bin` file.
-5. Follow the installation instructions above.
+2. run the make.bat file, if you get an error run the clean.bat file "This fork only builds for the dark theme I created"
+3. After running make.bet or clean.bat finishes you will have a omega-de-kernel-main.gba file. rename it to ezkernelnew.bin
+4. copy the ezkernelnew.bin to the root of your microsdcard
+5. insert the microsdcard into you Omega DE cartridge. and insert the cartidge into your GBA, DS, DS light, Analogue Pocket
+   and power on the device and/or select the cartridge while holding the right shoulder button to update the Cartridge to Superdark-DE.
+7. For Rev. B Omega DE carts unzip the RevB_update_FW7.zip and copy the RevB_update_FW7.gba to the root of your microsdcard
+   and power on the device and/or select the cartridge while holding the right shoulder button to update the Cartridge to Firmware version 7.
+9. Follow the installation instructions above.
 4. Update your flashcart and enjoy! :)
 
 ### Credits
