@@ -25,9 +25,13 @@ Official forum thread:
 https://gbatemp.net/threads/new-theme-for-ez-flash-omega.520665/
 
 _** Ez-flash Omega DE Revision B Firmware update to version 7
+
 _** Fixes sleep and mode B on analogue pocket
+
 _** This update does not work on Revison A
+
 _** You will need to buy a Revision B Omega DE
+
 _** If you want this functionality
 
 
