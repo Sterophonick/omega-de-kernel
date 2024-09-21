@@ -3,8 +3,10 @@
 ###### FORKED FROM https://github.com/Sterophonick/omega-de-kernel
 
 # Simpledark DE for EZ Flash Omega Definitive Edition
-based on Simple DE by Sterophonick
-Please give him a shout out on the gbatemp forums for all his hard work and support he gives everyone on the forums 
+Based on Simple DE by Sterophonick 
+<img src="https://gbatemp.net/data/avatars/o/457/457315.jpg?1680061797" width="15%"></img> <img
+
+Please give him a shout out on the gbatemp forums for all his hard work and support he gives everyone on the forums. 
 ###### https://gbatemp.net/threads/new-theme-for-ez-flash-omega.520665/
 ###### *If you're looking for SimpleLight for the **original** EZ Flash Omega, check here: https://github.com/Sterophonick/SimpleLight*
 ###### *If you're looking for SimpleLight for the **original** EZ Flash Omega, check here: https://github.com/Sterophonick/omega-de-kernel*
@@ -24,15 +26,11 @@ Please give him a shout out on the gbatemp forums for all his hard work and supp
 Official forum thread:
 https://gbatemp.net/threads/new-theme-for-ez-flash-omega.520665/
 
-_** Ez-flash Omega DE Revision B Firmware update to version 7
-
-_** Fixes sleep and mode B on analogue pocket
-
-_** This update does not work on Revison A
-
-_** You will need to buy a Revision B Omega DE
-
-_** If you want this functionality
+Ez-flash Omega DE Revision B Firmware update to version 7
+Fixes sleep and mode B on analogue pocket
+This update does not work on Revison A
+You will need to buy a Revision B Omega DE
+If you want this functionality
 
 
 ## Installation instructions:
