@@ -514,7 +514,14 @@ void IWRAM_CODE Set_64MROM_flag(u16  flag)
 }
 // --------------------------------------------------------------------
 
-void IWRAM_CODE Check_FW_update(u16 Current_FW_ver,u16 Built_in_ver)
+// I'm not entirely sure why but i can't update the FPGA firmware in the normal way
+// this function is a terrifying amalgamation of what goes on in the origianl Omega and
+// Omega DE.
+//
+// I really hate this, but i'm not really sure what can be done about it due to lack of
+// firmware ROM space.
+
+void IWRAM_CODE Check_FW_update()
 {
 	ASC_DATA = ASC_DATA_OLD;
 	vu16 busy;
@@ -529,90 +536,86 @@ void IWRAM_CODE Check_FW_update(u16 Current_FW_ver,u16 Built_in_ver)
 	sprintf(msg,"FIRMWARE UPDATE");
 	DrawHZText12(msg,0,75,offset_Y+0*line_x, 0x7FFF,1);	
 	
-	//u32 get_crc32 = crc32( image, image_bin_size2);
-	//DEBUG_printf("get_crc32 %x ",get_crc32);
-	
-	//if(get_crc32 != 0x480D0853) //fw1 
-	//if(get_crc32 != 0xA07D712F) //fw2
-	//if(get_crc32 != 0x3DA3D970) //fw3
-	/*if(get_crc32 != 0x76352215) //fw4
-	{
-			sprintf(msg,"CRC32 checksum error!");		
-			DrawHZText12(msg,0,2,offset_Y+1*line_x, RGB(31,00,00),1);
-			sprintf(msg,"Press (B) to return");
-			DrawHZText12(msg,0,2,offset_Y+2*line_x, 0x7FFF,1);	
-			while(1)
-			{
-				VBlankIntrWait();	
-				
-				scanKeys();
-				u16 keys = keysDown();
-						
-				if (keys & KEY_B) {
-					return;
-				}
-			}		
-	}*/
+	u16 DEcard_FW_readver = Read_FPGA_ver();
+	u16 DEcard_FW_ver = DEcard_FW_readver & 0x00FF;
 
-	sprintf(msg,"Current firmware version: V%02d",Current_FW_ver);
-	DrawHZText12(msg,0,2,offset_Y+1*line_x, 0x7FFF,1);	
-	
-	sprintf(msg,"Please use the OFFICIAl kernel to",Built_in_ver);
-	DrawHZText12(msg,0,2,offset_Y+3*line_x, 0x7FFF,1);	
+	u8 updateFirmware = 0;
 
-	sprintf(msg,"update firmware. Sorry.",Built_in_ver);
-	DrawHZText12(msg,0,2,offset_Y+4*line_x, 0x7FFF,1);
-	
-	sprintf(msg,"Press (B) to skip.",Built_in_ver);
-	DrawHZText12(msg,0,2,offset_Y+6*line_x, 0x7FFF,1);	
-	
-	while(1)
-	{
-		VBlankIntrWait();	
-		
-		scanKeys();
-		u16 keys = keysDown();
-				
-		if (keys & KEY_A) {
-			/*
-			SPI_Write_Disable();
-			Clear(2, offset_Y+4*line_x,220,15,RGB(0,18,24),1);	
-			Clear(2, offset_Y+5*line_x,220,15,RGB(0,18,24),1);	
-		
-			sprintf(msg,"Progress:");		
-			DrawHZText12(msg,0,2,offset_Y+6*line_x, 0x7FFF,1);
-									
-			for(offset = 0x0000;offset<newomega_top_bin_size;offset+=256)
-			{
-					
-				sprintf(msg," %lu%%",(offset*100/newomega_top_bin_size+1));
-				Clear(54, offset_Y+6*line_x,120,15,RGB(0,18,24),1);	
-				DrawHZText12(msg,0,54,offset_Y+6*line_x, 0x7FFF,1);	
-				
-				FAT_table_buffer[0] = (0x80000 + offset);//omega DE 0x80000
-				
-				dmaCopy(newomega_top_bin_address+offset,&FAT_table_buffer[1],256);  
-				Send_FATbuffer(FAT_table_buffer,2); 
-								   
-				SPI_Write_Enable();
-				while(1)
-				{
-					busy = SD_Response();
-					if(busy==0) break;
-				}
+	if((DEcard_FW_readver & 0xF000) == 0xB000  || (DEcard_FW_readver & 0xF000) == 0xA000){ //lx16  note that, 0xA000 is initially,fix here
+		if(DEcard_FW_ver < LX16_FW_built_in_ver){
+			updateFirmware = 1;
+			//FW_update(DEcard_FW_readver,LX16_FW_built_in_ver,LX16_newomega_top_bin_address,LX16_newomega_top_bin_size,LX16_FW_crc32,LX16_wirte_address);
+		}
+	}
+	else{//lx9
+		if(DEcard_FW_ver < LX9_FW_built_in_ver){
+			updateFirmware = 1;
+
+			//FW_update(DEcard_FW_readver,LX9_FW_built_in_ver,LX9_newomega_top_bin_address,LX9_newomega_top_bin_size,LX9_FW_crc32,LX9_wirte_address);
+		}
+	}
+
+	if (updateFirmware) {
+		sprintf(msg,"Current firmware version: V%02d",DEcard_FW_readver);
+		DrawHZText12(msg,0,2,offset_Y+1*line_x, 0x7FFF,1);
+
+		sprintf(msg,"Please use the OFFICIAl kernel to");
+		DrawHZText12(msg,0,2,offset_Y+3*line_x, 0x7FFF,1);
+
+		sprintf(msg,"update firmware. Sorry.");
+		DrawHZText12(msg,0,2,offset_Y+4*line_x, 0x7FFF,1);
+
+		sprintf(msg,"Press (B) to skip.");
+		DrawHZText12(msg,0,2,offset_Y+6*line_x, 0x7FFF,1);
+
+		while(1)
+		{
+			VBlankIntrWait();
+
+			scanKeys();
+			u16 keys = keysDown();
+
+			if (keys & KEY_A) {
+				/*
 				SPI_Write_Disable();
-				//DEBUG_printf("count %x ",count);
-				//break;								
-			}		
-			sprintf(msg,"Update finished, power off the console.");
-			DrawHZText12(msg,0,2,offset_Y+8*line_x, 0x7FFF,1);	
-			
-			while(1);
-			break;
-			*/
-		}	
-		else if (keys & KEY_B) {
-			break;
+				Clear(2, offset_Y+4*line_x,220,15,RGB(0,18,24),1);
+				Clear(2, offset_Y+5*line_x,220,15,RGB(0,18,24),1);
+
+				sprintf(msg,"Progress:");
+				DrawHZText12(msg,0,2,offset_Y+6*line_x, 0x7FFF,1);
+
+				for(offset = 0x0000;offset<newomega_top_bin_size;offset+=256)
+				{
+
+					sprintf(msg," %lu%%",(offset*100/newomega_top_bin_size+1));
+					Clear(54, offset_Y+6*line_x,120,15,RGB(0,18,24),1);
+					DrawHZText12(msg,0,54,offset_Y+6*line_x, 0x7FFF,1);
+
+					FAT_table_buffer[0] = (0x80000 + offset);//omega DE 0x80000
+
+					dmaCopy(newomega_top_bin_address+offset,&FAT_table_buffer[1],256);
+					Send_FATbuffer(FAT_table_buffer,2);
+
+					SPI_Write_Enable();
+					while(1)
+					{
+						busy = SD_Response();
+						if(busy==0) break;
+					}
+					SPI_Write_Disable();
+					//DEBUG_printf("count %x ",count);
+					//break;
+				}
+				sprintf(msg,"Update finished, power off the console.");
+				DrawHZText12(msg,0,2,offset_Y+8*line_x, 0x7FFF,1);
+
+				while(1);
+				break;
+				*/
+			}
+			else if (keys & KEY_B) {
+				break;
+			}
 		}
 	}
 }

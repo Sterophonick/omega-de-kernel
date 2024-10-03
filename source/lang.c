@@ -159,7 +159,7 @@ const char zh_set_btn[]="����";
 const char zh_ok_btn[]="����";
 const char zh_formatnor_info[]="ȷ��?��Լ4����";
 
-const char zh_theme_credit[]="Superdark DE K1.04";
+const char zh_theme_credit[]="Superdark DE K1.05";
 const char zh_theme_credit2[]="f3bandit";
 const char zh_theme_credit3[]="Based on Simple DE";
 const char zh_theme_credit4[]="Sterophonick";

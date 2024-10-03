@@ -29,6 +29,6 @@ u32 crc32(unsigned char *buf, u32 size);
 void IWRAM_CODE Set_RTC_status(u16  status);
 void IWRAM_CODE Set_LED_control(u16  status);
 void IWRAM_CODE Set_64MROM_flag(u16  flag);
-void IWRAM_CODE Check_FW_update(u16 Current_FW_ver,u16 Built_in_ver);
+void IWRAM_CODE Check_FW_update();
 u16 IWRAM_CODE Read_sav_info(u32 offset);
 void IWRAM_CODE Bank_Switching(u8 bank);

@@ -1814,7 +1814,7 @@ u32 IWRAM_CODE LoadEMU2PSRAM(TCHAR *filename,u32 is_EMU)
 				//f_lseek(&gfile, blocknum);
 				if (filesize-blocknum*0x20000 < 0x20000)
 					memset(pReadCache, 0, 0x20000);
-				f_read(&gfile, pReadCache, 0x20000, &ret);//pReadCache max 0x20000 Byte
+				f_read(&gfile, pReadCache, 0x20000, (UINT*)&ret);//pReadCache max 0x20000 Byte
 				page = 0;
 						
 				Address=blocknum;
@@ -2426,13 +2426,7 @@ int main(void) {
 	scanKeys();
 	u16 keys = keysDown();	
 	
-	u16 Built_in_ver = 4;   //Newest_FW_ver
-	u16 Current_FW_ver = Read_FPGA_ver();
-
-	if((Current_FW_ver < Built_in_ver) || (Current_FW_ver == 99))//99 is test ver
-	{
-		Check_FW_update(Current_FW_ver,Built_in_ver);
-	}
+	Check_FW_update();
 	/*else if(keys & KEY_L) {
 		Check_FW_update(Current_FW_ver,Built_in_ver);
 	}*/
