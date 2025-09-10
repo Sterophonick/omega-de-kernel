@@ -18,7 +18,7 @@ extern u16 gl_select_lang;
 void Show_ver(void)
 {
 	char msg[20];
-	char *ver="K:1.05";
+	char *ver="K:1.06";
 	u16 FPGAver = Read_FPGA_ver();
 	sprintf(msg,"FW:%d %s",FPGAver&0xFF,ver);
 	DrawHZText12(msg,0,160,3, gl_color_text,1);	
