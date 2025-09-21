@@ -3,5 +3,6 @@ emusrc/build
 *.elf
 build
 *.bin
+*.sav
 source/lang.c.bak
 jagoombacolor-master/src/ui.c.bak
