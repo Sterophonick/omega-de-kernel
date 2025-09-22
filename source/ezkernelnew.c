@@ -192,7 +192,45 @@ void wait_btn()
 	//while(*(vu16*)0x04000130 != 0x3FF );
 }
 //---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+u32 Copy_file(const char* src, const char* dst)
+{
+	u32 ret = 0;
+	UINT read_ret;
+	UINT write_ret;
+	u32 filesize;
+	u32 res;
+	u32 blocknum;
+	FIL dst_file;
 
+	res = f_open(&gfile, src, FA_READ);
+	if (res == FR_OK)
+	{
+		res = f_open(&dst_file, dst, FA_WRITE | FA_CREATE_ALWAYS);
+		if (res == FR_OK)
+		{
+			filesize = f_size(&gfile);
+			f_lseek(&gfile, 0x0000);
+
+			for (blocknum = 0x0000; blocknum < filesize; blocknum += 0x20000)
+			{
+				f_read(&gfile, pReadCache, 0x20000, &read_ret);
+				f_write(&dst_file, pReadCache, read_ret, &write_ret);
+				if (write_ret != read_ret)
+					break;
+				else
+					ret = 1;
+			}
+
+			f_close(&dst_file);
+
+			if (!ret) f_unlink(dst);
+		}
+		f_close(&gfile);
+	}
+
+	return ret;
+}
 //---------------------------------------------------------------------------------
 void Get_file_size(u32 num,char*str)
 {
@@ -480,6 +518,36 @@ void Show_ICON_filename_SD(u32 show_offset,u32 file_select,u32 haveThumbnail)
 			DrawHZText12(msg,0,208,showy, name_color,1);
 		}
 	}
+}
+//---------------------------------------------------------------------------------
+void Backup_savefile(const char* filename)
+{
+	const char* backup_dir = "/BACKUP/SAVER";
+	u8 temp_filename[MAX_path_len] = { 0 };
+	u8 temp_filename_dst[MAX_path_len] = { 0 };
+	u32 temp_filename_length;
+
+	strncpy(temp_filename, backup_dir, sizeof(temp_filename) - 2);
+	temp_filename_length = strlen(temp_filename);
+	temp_filename[temp_filename_length++] = '/';
+
+	strncpy(temp_filename + temp_filename_length, filename, sizeof(temp_filename) - temp_filename_length - 2);
+	temp_filename_length = strlen(temp_filename);
+
+	f_mkdir(backup_dir);
+	strncpy(temp_filename_dst, temp_filename, sizeof(temp_filename_dst));
+
+	for (s8 i = 3; i >= 0; --i)
+	{
+		temp_filename[temp_filename_length] = '0' + i;
+		temp_filename_dst[temp_filename_length] = '0' + i + 1;
+
+		f_unlink(temp_filename_dst);
+		f_rename(temp_filename, temp_filename_dst);
+	}
+
+	temp_filename[temp_filename_length] = '0';
+	Copy_file(filename, temp_filename);
 }
 //---------------------------------------------------------------------------------
 void IWRAM_CODE Refresh_filename(u32 show_offset,u32 file_select,u32 updown,u32 haveThumbnail)
@@ -1468,7 +1536,7 @@ u32 IWRAM_CODE Loadfile2PSRAM(TCHAR *filename)
 		f_lseek(&gfile, 0x0000);
 		for(blocknum=0x0000;blocknum<filesize;blocknum+=0x20000)
 		{		
-			sprintf(msg,"%luMb",(blocknum)/0x20000);
+			sprintf(msg,"%luMb/%luMb",(blocknum)/0x20000,filesize/0x20000);
 			Clear(78+54,160-15,110,15,gl_color_cheat_black,1);
 			DrawHZText12(msg,0,78+54,160-15,gl_color_text,1);
 			f_read(&gfile, pReadCache, 0x20000, &ret);//pReadCache max 0x20000 Byte
@@ -1721,7 +1789,7 @@ void IWRAM_CODE make_pogoshell_arguments(TCHAR *cmdname, TCHAR *filename, u32 cm
 	// Passed in 32KB aligned
 	offset = offset + 0x08000000 + 8;
 
-	p = pReadCache;
+	p = (u32*)pReadCache;
 
 	// Magic value in ROM address space
 	*p++ = 0xFAB0BABE;
@@ -1747,7 +1815,8 @@ u32 IWRAM_CODE LoadEMU2PSRAM(TCHAR *filename,u32 is_EMU)
 	UINT  ret;
 	u32 filesize;
 	u32 res;
-	u32 blocknum, blockoffset = gl_error_0;
+    // u32 blocknum, blockoffset = gl_error_0; // why are you setting it to a string pointer? This is never brought up again outside of overwriting it.
+	u32 blocknum, blockoffset = 0;
 	char msg[20];
 	
 	u32 Address;
@@ -1786,7 +1855,7 @@ u32 IWRAM_CODE LoadEMU2PSRAM(TCHAR *filename,u32 is_EMU)
 				//f_lseek(&gfile, blocknum);
 				if (filesize-blocknum*0x20000 < 0x20000)
 					memset(pReadCache, 0, 0x20000);
-				f_read(&gfile, pReadCache, 0x20000, &ret);//pReadCache max 0x20000 Byte
+				f_read(&gfile, pReadCache, 0x20000, (UINT*)&ret);//pReadCache max 0x20000 Byte
 				page = 0;
 						
 				Address=blocknum;
@@ -2277,75 +2346,7 @@ void Set_saveMODE(BYTE saveMODE)
 	//save to nor 
 	Save_SET_info(SET_info_buffer,0x200);
 }
-//---------------------------------------------------------------------------------
-u32 Copy_file(const char* src, const char* dst)
-{
-	u32 ret = 0;
-	UINT read_ret;
-	UINT write_ret;
-	u32 filesize;
-	u32 res;
-	u32 blocknum;
-	FIL dst_file;
 
-	res = f_open(&gfile, src, FA_READ);
-	if (res == FR_OK)
-	{
-		res = f_open(&dst_file, dst, FA_WRITE | FA_CREATE_ALWAYS);
-		if (res == FR_OK)
-		{
-			filesize = f_size(&gfile);
-			f_lseek(&gfile, 0x0000);
-
-			for (blocknum = 0x0000; blocknum < filesize; blocknum += 0x20000)
-			{
-				f_read(&gfile, pReadCache, 0x20000, &read_ret);
-				f_write(&dst_file, pReadCache, read_ret, &write_ret);
-				if (write_ret != read_ret)
-					break;
-				else
-					ret = 1;
-			}
-
-			f_close(&dst_file);
-
-			if (!ret) f_unlink(dst);
-		}
-		f_close(&gfile);
-	}
-
-	return ret;
-}
-//---------------------------------------------------------------------------------
-void Backup_savefile(const char* filename)
-{
-	const char* backup_dir = "/BACKUP/SAVER";
-	u8 temp_filename[MAX_path_len] = { 0 };
-	u8 temp_filename_dst[MAX_path_len] = { 0 };
-	u32 temp_filename_length;
-
-	strncpy(temp_filename, backup_dir, sizeof(temp_filename) - 2);
-	temp_filename_length = strlen(temp_filename);
-	temp_filename[temp_filename_length++] = '/';
-
-	strncpy(temp_filename + temp_filename_length, filename, sizeof(temp_filename) - temp_filename_length - 2);
-	temp_filename_length = strlen(temp_filename);
-
-	f_mkdir(backup_dir);
-	strncpy(temp_filename_dst, temp_filename, sizeof(temp_filename_dst));
-
-	for (s8 i = 3; i >= 0; --i)
-	{
-		temp_filename[temp_filename_length] = '0' + i;
-		temp_filename_dst[temp_filename_length] = '0' + i + 1;
-
-		f_unlink(temp_filename_dst);
-		f_rename(temp_filename, temp_filename_dst);
-	}
-
-	temp_filename[temp_filename_length] = '0';
-	Copy_file(filename, temp_filename);
-}
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------
@@ -2386,13 +2387,7 @@ int main(void) {
 	scanKeys();
 	u16 keys = keysDown();	
 	
-	u16 Built_in_ver = 4;   //Newest_FW_ver
-	u16 Current_FW_ver = Read_FPGA_ver();
-
-	if((Current_FW_ver < Built_in_ver) || (Current_FW_ver == 99))//99 is test ver
-	{
-		Check_FW_update(Current_FW_ver,Built_in_ver);
-	}
+	Check_FW_update();
 	/*else if(keys & KEY_L) {
 		Check_FW_update(Current_FW_ver,Built_in_ver);
 	}*/
@@ -2621,7 +2616,7 @@ re_showfile:
 	    	if(page_num==NOR_list)
 	    	{
 					Refresh_filename_NOR(show_offset,file_select,updata);
-					ClearWithBG(gImage_NOR,185, 0, 30, 18, 1);
+					ClearWithBG((u16*)gImage_NOR,185, 0, 30, 18, 1);
 	    	}
 	    	else
 	    	{
@@ -3414,6 +3409,7 @@ load_file:
 						
 						if((gl_engine_sel==0) || (gl_select_lang == 0xE2E2))
 						{				
+							get_find:
 			    		FAT_table_buffer[0x1F4/4] = SET_PARAMETER_MODE;
 							Send_FATbuffer(FAT_table_buffer,1);												
 			    		res=Loadfile2PSRAM(pfilename);
@@ -3422,8 +3418,15 @@ load_file:
 						}
 						else 
 						{
-			    		use_internal_engine(GAMECODE);	
-			    		Send_FATbuffer(FAT_table_buffer,0);//Loading rom	
+							res=use_internal_engine(GAMECODE);
+							if(res == 1)
+							{
+								Send_FATbuffer(FAT_table_buffer,0);//Loading rom
+							}
+							else
+							{
+								goto get_find;
+							}
 						}
 					}	
 	    		Patch_SpecialROM_sleepmode();//
